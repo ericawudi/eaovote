@@ -34,12 +34,12 @@ export default function Category() {
       }}
     >
       <List
-        // style={{
-        //   display: "flex",
-        //   // flex: 1,
-        //   flexDirection: "column",
-        //   justifyContent: "center",
-        // }}
+        style={{
+          display: "flex",
+          // flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
