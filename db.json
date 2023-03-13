@@ -1,0 +1,114 @@
+{
+    "competition": [
+        {
+            "id": "eom",
+            "name": "Employee Of the Month"
+        },
+        {
+            "id": "eoy",
+            "name": "Employee Of the Year"
+        },
+        {
+            "id": "foodcast",
+            "name": "Best Departmental Dish"
+        }
+    ],
+    "category": [
+        {
+            "id": "eom",
+            "name": "Best Female Award"
+        },
+        {
+            "id": "eom",
+            "name": "Best Male Award"
+        },
+        {
+            "id": "eom",
+            "name": "Best Behavior Award"
+        },
+        {
+            "id": "eom",
+            "name": "Best Singer Award"
+        },
+        {
+            "id": "eom",
+            "name": "Most Tall Award"
+        },
+        {
+            "id": "eom",
+            "name": "Most Short Award"
+        },
+        {
+            "id": "eom",
+            "name": "Best Comedian Award"
+        },
+        {
+            "id": "eom",
+            "name": "Best Laughter Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Female Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Male Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Behavior Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Singer Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Most Tall Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Most Short Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Comedian Award"
+        },
+        {
+            "id": "eoy",
+            "name": "Best Laughter Award"
+        },
+        {
+            "id": "foodcast",
+            "name": "NOC Department"
+        },
+        {
+            "id": "foodcast",
+            "name": "PPMT"
+        },
+        {
+            "id": "foodcast",
+            "name": "Sale"
+        },
+        {
+            "id": "foodcast",
+            "name": "Marketing"
+        },
+        {
+            "id": "foodcast",
+            "name": "Finance"
+        },
+        {
+            "id": "foodcast",
+            "name": "Development"
+        },
+        {
+            "id": "foodcast",
+            "name": "CRM"
+        },
+        {
+            "id": "foodcast",
+            "name": "Content"
+        }
+    ]
+}
