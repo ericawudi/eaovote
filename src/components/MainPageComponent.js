@@ -21,8 +21,8 @@ function MainPageComponent() {
   };
 
   return (
-    <div id="detail">
-      <div style={{ display: "flex", flexDirection: "column" }}>
+    <div>
+      <div>
         <Category />
         <Category />
       </div>
