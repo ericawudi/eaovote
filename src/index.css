@@ -118,16 +118,6 @@ nav {
   padding-top: 0.4rem;
 }
 
-/* #detail {
-  display: flex;
-  flex: 3;
-  padding: 2rem 4rem;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-
-} */
-
 nav a {
   display: flex;
   align-items: center;
@@ -150,13 +140,4 @@ nav a.active {
   background: #b9b9b9;
   color: rgb(64, 66, 179);
   font-weight: 600;
-}
-
-#logout {
-  margin: 0;
-  padding: 0.6rem;
-  position: fixed;
-  bottom: 0;
-  width: 36.5%;
-  background-color: rgba(212, 244, 244);
 }

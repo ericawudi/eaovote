@@ -1,6 +1,6 @@
-import MainPageComponent from "../components/MainPageComponent";
-import ContextProvider from "../components/ContextProvider";
-import SideBarNav from "../components/SideBarNav";
+import MainPageComponent from "../features/dashboard/MainPageComponent";
+import ContextProvider from "../features/dashboard/ContextProvider";
+import SideBarNav from "../features/sidebar/SideBarNav";
 import { Grid } from "@mui/material";
 
 function Dashboard() {

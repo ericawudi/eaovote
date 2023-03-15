@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
-import Notification from "./Notification";
-import { useFetch } from "../services/hooks/useFetch";
-import Category from "./Category";
+import Notification from "../../components/Notification";
+import { useFetch } from "../../services/hooks/useFetch";
+import Category from "../contest/Category";
 
 function MainPageComponent() {
   const [open, setOpen] = useState(false);

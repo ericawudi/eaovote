@@ -1,0 +1,14 @@
+.sidebar__wrapper {
+  /* max-width: 100%; */
+  position: relative;
+  background: rgba(212, 244, 244, 0.7);
+}
+
+.sidebar__logout {
+  margin: 0;
+  padding: 0.6rem;
+  position: fixed;
+  bottom: 0;
+  width: 17.5rem;
+  background-color: rgba(212, 244, 244);
+}

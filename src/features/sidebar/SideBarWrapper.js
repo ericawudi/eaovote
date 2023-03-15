@@ -1,9 +1,10 @@
+import classes from "./sidebar.module.css";
 import { IconButton, Tooltip } from "@mui/material";
 import React from "react";
 import { Sidebar } from "react-pro-sidebar";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import { logUserOut } from "../services/utils/helper";
+import { logUserOut } from "../../utils/helper";
 
 function SideBarWrapper({ children }) {
   const navigate = useNavigate();
@@ -15,32 +16,16 @@ function SideBarWrapper({ children }) {
   };
 
   return (
-    // <div>
-    <Sidebar
-      backgroundColor="rgba(212, 244, 244, 0.7)"
-      rtl={false}
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignContent: "space-between",
-      }}
-    >
+    <div className={classes.sidebar__wrapper} rtl={false}>
       <div>{children}</div>
-      {/* <h1 id="logout" style={{ position: "absolute", bottom: 0 }}>
-        Logout
-      </h1> */}
-
-      <h1 id="logout">
-        <Tooltip title={"Logout"}>
+      <h1 className={classes.sidebar__logout}>
+        <Tooltip title="Logout">
           <IconButton onClick={handleLogout}>
             <LogoutIcon />
           </IconButton>
         </Tooltip>
       </h1>
-    </Sidebar>
-    // </div>
+    </div>
   );
 }
 

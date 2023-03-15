@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { isAuthenticated } from "../services/utils/auth";
+import { isAuthenticated } from "../utils/auth";
 
 function PrivateRoutes() {
   const auth = isAuthenticated();

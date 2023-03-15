@@ -1,6 +1,6 @@
 import { Menu, MenuItem } from "react-pro-sidebar";
-import { useFetch } from "../services/hooks/useFetch";
-import Loader from "./Loader";
+import { useFetch } from "../../services/hooks/useFetch";
+import Loader from "../../components/Loader";
 import SideBarWrapper from "./SideBarWrapper";
 import { NavLink } from "react-router-dom";
 

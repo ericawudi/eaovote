@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import Notification from "../components/Notification";
 import { useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
-import { loginUser } from "../services/utils/helper";
+import { loginUser } from "../utils/helper";
 
 function Login() {
   const [open, setOpen] = useState(false);
