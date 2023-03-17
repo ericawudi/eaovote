@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useCompetitionContext } from "../index/competition-provider";
+import useCompetitionLogicHook from "./competition";
 
 export default function useCategoryLogicHook() {
-  const { addNewVote, removeVote } = useCompetitionContext();
+  const { addNewVote, removeVote } = useCompetitionLogicHook();
   const [showParticipants, setShowParticipants] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const [selectedPartipantId, setSelectedParticipantId] = useState(null);

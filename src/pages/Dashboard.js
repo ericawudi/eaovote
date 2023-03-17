@@ -26,11 +26,11 @@ function Dashboard() {
   const toggleSidebar = () => setShowDrawer((prev) => !prev);
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <SidebarDrawer open={showDrawer} onClose={toggleSidebar}>
         <SideBarNav />
       </SidebarDrawer>
-      <Grid container direction="row">
+      <Grid container direction="row" sx={{ height: "100%" }}>
         {showSidebar ? (
           <Grid item sm={2} style={{ background: "green" }}>
             <SideBarNav />

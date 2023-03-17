@@ -8,7 +8,6 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import Participants from "../participant/participants";
-import classes from "../styles/contest.module.css";
 import useCategoryLogicHook from "../logic-hooks/category";
 
 export default function Category(id) {
@@ -18,7 +17,7 @@ export default function Category(id) {
   } = useCategoryLogicHook(id);
 
   return (
-    <div className={classes.contest__category_main}>
+    <div>
       <List
         style={{
           display: "flex",
