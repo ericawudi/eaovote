@@ -1,10 +1,10 @@
 import { useState } from "react";
-import MainPageComponent from "../features/dashboard/MainPageComponent";
-import ContextProvider from "../features/dashboard/ContextProvider";
-import SideBarNav from "../features/sidebar/SideBarNav";
+import MainPageComponent from "../layout/dashboard/MainPageComponent";
+import ContextProvider from "../layout/dashboard/ContextProvider";
+import SideBarNav from "../layout/sidebar/SideBarNav";
 import { Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SidebarDrawer from "../features/sidebar/sidebar-drawer";
+import SidebarDrawer from "../layout/sidebar/sidebar-drawer";
 import useSreenWidth from "../utils/use-screen-width";
 
 const MINIMUM_WIDTH = 1160;
@@ -26,7 +26,7 @@ function Dashboard() {
   const toggleSidebar = () => setShowDrawer((prev) => !prev);
 
   return (
-    <ContextProvider>
+    <div>
       <SidebarDrawer open={showDrawer} onClose={toggleSidebar}>
         <SideBarNav />
       </SidebarDrawer>
@@ -48,7 +48,7 @@ function Dashboard() {
           <MainPageComponent />
         </Grid>
       </Grid>
-    </ContextProvider>
+    </div>
   );
 }
 

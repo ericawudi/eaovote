@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Notification from "../../components/Notification";
 import { useFetch } from "../../services/hooks/useFetch";
-import Category from "../contest/Category";
+import Competition from "../../competition/index/competition";
 
 function MainPageComponent() {
   const [open, setOpen] = useState(false);
@@ -20,11 +20,7 @@ function MainPageComponent() {
 
   return (
     <div>
-      <div>
-        <Category />
-        <Category />
-      </div>
-
+      <Competition />
       <Notification
         severity="error"
         message={notificationMessage}

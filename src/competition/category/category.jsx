@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -8,41 +7,23 @@ import Collapse from "@mui/material/Collapse";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import StarBorder from "@mui/icons-material/StarBorder";
-import Participant from "./ParticipantCard";
 import { Grid } from "@mui/material";
+import Participants from "../participant/participants";
+import classes from "../styles/contest.module.css";
 
 export default function Category() {
   const [open, setOpen] = useState(true);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
-  const data = [1, 2, 3, 4];
+  const handleClick = () => setOpen(!open);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        justifyContent: "stretch",
-        alignContent: "stretch",
-        flexDirection: "column",
-        height: "100%",
-        width: "inherit",
-        // background: "yellow",
-      }}
-    >
+    <div className={classes.contest__category_main}>
       <List
         style={{
           display: "flex",
-          // flex: 1,
           flexDirection: "column",
           justifyContent: "center",
         }}
         component="nav"
-        aria-labelledby="nested-list-subheader"
       >
         <ListItemButton
           onClick={handleClick}
@@ -62,11 +43,7 @@ export default function Category() {
             justifyContent="space-around"
             sx={{ padding: "20px", width: "100%", background: "yellow" }}
           >
-            {data.map((item) => (
-              <Grid item key={item}>
-                <Participant />
-              </Grid>
-            ))}
+            <Participants />
           </Grid>
         </Collapse>
       </List>

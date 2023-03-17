@@ -24,12 +24,6 @@ a:active {
   text-decoration: none;
 }
 
-#root {
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-
 .login {
   background: url("../src/assets/images/loginBckImg.jpg") no-repeat center
     center fixed;
@@ -59,7 +53,7 @@ a:active {
   align-items: center;
 }
 
-#btn {
+/* #btn {
   background-color: #1c87c9;
   -webkit-border-radius: 60px;
   border-radius: 60px;
@@ -70,7 +64,7 @@ a:active {
   padding: 5px 15px;
   text-align: center;
   text-decoration: none;
-}
+} */
 
 @keyframes glowing {
   0% {

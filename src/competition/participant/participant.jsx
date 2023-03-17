@@ -6,10 +6,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import { useState } from "react";
 
-export default function Participant() {
+export default function Participant(props) {
+  const [isSelected, setIsSelected] = useState(false);
+
   return (
-    <Card elevation={5} sx={{ maxWidth: 300 }}>
+    <Card elevation={1} sx={{ maxWidth: 300 }}>
       <CardMedia
         sx={{ height: 120 }}
         image="https://cc-prod.scene7.com/is/image/CCProdAuthor/how_to_cut_out_images_photoshop_P1_mobile_360x270"
