@@ -1,4 +1,3 @@
-import { useState } from "react";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -10,10 +9,13 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import Participants from "../participant/participants";
 import classes from "../styles/contest.module.css";
+import useCategoryLogicHook from "../logic-hooks/category";
 
-export default function Category() {
-  const [open, setOpen] = useState(true);
-  const handleClick = () => setOpen(!open);
+export default function Category(id) {
+  const {
+    state: { showParticipants },
+    handlers: { toggleShowParticipants },
+  } = useCategoryLogicHook(id);
 
   return (
     <div className={classes.contest__category_main}>
@@ -26,16 +28,16 @@ export default function Category() {
         component="nav"
       >
         <ListItemButton
-          onClick={handleClick}
+          onClick={toggleShowParticipants}
           sx={{ bgcolor: "ButtonHighlight" }}
         >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Competion Category" />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {showParticipants ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={showParticipants} timeout="auto" unmountOnExit>
           <Grid
             container
             alignItems="center"

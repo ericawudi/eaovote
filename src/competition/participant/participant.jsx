@@ -2,17 +2,16 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import { useState } from "react";
 
 export default function Participant(props) {
-  const [isSelected, setIsSelected] = useState(false);
+  const { isSelected, onSelect } = props;
+  const elevationValue = isSelected ? 10 : 1;
 
   return (
-    <Card elevation={1} sx={{ maxWidth: 300 }}>
+    <Card elevation={elevationValue} sx={{ maxWidth: 300 }}>
       <CardMedia
         sx={{ height: 120 }}
         image="https://cc-prod.scene7.com/is/image/CCProdAuthor/how_to_cut_out_images_photoshop_P1_mobile_360x270"
@@ -33,10 +32,16 @@ export default function Participant(props) {
           alignItems: "center",
           gap: 5,
           float: "right",
+          cursor: "pointer",
         }}
+        onClick={onSelect}
       >
         <p>Vote</p>
-        <ThumbUpOffAltIcon fontSize="large" />
+        {isSelected ? (
+          <ThumbUpAltIcon fontSize="large" />
+        ) : (
+          <ThumbUpOffAltIcon fontSize="large" />
+        )}
       </CardActions>
     </Card>
   );
