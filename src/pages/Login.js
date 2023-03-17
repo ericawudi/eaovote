@@ -21,16 +21,19 @@ function Login() {
   const navigate = useNavigate();
 
   const onSubmit = async (data, _event) => {
-    const { username, password } = data;
     setLoading(true);
-    const response = await loginUser(username, password);
-    if (response.data?.status === 200) {
-      navigate("/");
-    } else {
-      setNotificationMessage(response.data.message);
-      setOpen(true);
-    }
-    setLoading(false);
+    setTimeout(async () => {
+      const { username, password } = data;
+
+      const response = await loginUser(username, password);
+      if (response.data?.status === 200) {
+        navigate("/");
+      } else {
+        setNotificationMessage(response.data.message);
+        setOpen(true);
+      }
+      setLoading(false);
+    }, 10000);
   };
 
   const handleClose = (_event, reason) => {

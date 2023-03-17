@@ -21,8 +21,8 @@ function SideBarNav() {
   return (
     <SideBarWrapper>
       <Menu>
-        <MenuItem style={{ textAlign: "center" }}>
-          <h2>Admin</h2>
+        <MenuItem style={{ textAlign: "center", width: "200px" }}>
+          <h2 style={{ width: "700px" }}>Admin</h2>
         </MenuItem>
 
         {result.data?.data.map((navItem) => {
