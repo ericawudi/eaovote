@@ -4,9 +4,12 @@ import Loader from "../../components/Loader";
 import SideBarWrapper from "./SideBarWrapper";
 import { NavLink } from "react-router-dom";
 import classes from "./sidebar.module.css";
+import useSidebarLogicHook from "./sidebar-logic-hook";
 
 function SideBarNav() {
   // const result = useFetch("competition");
+  const competions = useSidebarLogicHook();
+
   const result = { isLoading: false, isError: false };
 
   if (result.isLoading) {
@@ -25,7 +28,7 @@ function SideBarNav() {
       <Menu className={classes.sidebar__nav}>
         <h2 className={classes.sidebar__title}>Admin</h2>
 
-        {result.data?.data.map((navItem) => {
+        {competions.map((navItem) => {
           return (
             <NavLink
               key={navItem.id}

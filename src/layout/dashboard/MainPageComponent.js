@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Notification from "../../components/Notification";
-import { useFetch } from "../../services/hooks/useFetch";
+import { useFetch } from "../../services/useFetch";
 import Competition from "../../competition/index/competition";
 
 function MainPageComponent() {

@@ -1,6 +1,6 @@
 // import { useQuery } from "react-query";
-import { APISecuredAxios } from "../../utils/auth";
-import { Constants as K } from "../../utils/constants";
+import { APISecuredAxios } from "../utils/auth";
+import { Constants as K } from "../utils/constants";
 
 const fetchData = ({ queryKey }) => {
   if (Array.isArray(queryKey) && queryKey.length > 1) {
