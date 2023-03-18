@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+// import { useMutation } from "react-query";
 import { APISecuredAxios } from "../utils/auth";
 
 const logInUser = (data) => {
@@ -7,6 +7,7 @@ const logInUser = (data) => {
 };
 
 export const usePostData = () => {
-  const result = useMutation("user-login", logInUser);
+  // const result = useMutation("user-login", logInUser);
+  const result = {};
   return result;
 };

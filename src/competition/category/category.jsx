@@ -10,11 +10,9 @@ import { Grid } from "@mui/material";
 import Participants from "../participant/participants";
 import useCategoryLogicHook from "../logic-hooks/category";
 
-export default function Category(id) {
-  const {
-    state: { showParticipants },
-    handlers: { toggleShowParticipants },
-  } = useCategoryLogicHook(id);
+export default function Category({ id }) {
+  const { isShowParticipants, toggleShowParticipants } =
+    useCategoryLogicHook(id);
 
   return (
     <div>
@@ -34,15 +32,15 @@ export default function Category(id) {
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Competion Category" />
-          {showParticipants ? <ExpandLess /> : <ExpandMore />}
+          {isShowParticipants ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={showParticipants} timeout="auto" unmountOnExit>
+        <Collapse in={isShowParticipants} timeout="auto" unmountOnExit>
           <Grid
             container
             alignItems="center"
-            // gap={2}
-            justifyContent="space-around"
-            sx={{ padding: "20px", width: "100%", background: "yellow" }}
+            gap={3}
+            justifyContent="center"
+            sx={{ padding: "20px", width: "100%" }}
           >
             <Participants />
           </Grid>

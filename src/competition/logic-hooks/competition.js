@@ -1,26 +1,44 @@
-import { useState } from "react";
+import { useReducer } from "react";
+import reducer, { initialState } from "../store/competion-duck";
+import { PARTICIPANT_ACTIONS } from "../store/competion-actions";
 
 export default function useCompetitionLogicHook() {
-  const [votes, setVotes] = useState([]);
+  const [store, dispatch] = useReducer(reducer, initialState);
 
-  const addNewVote = ({ categoryId, participantId }) => {
-    const duplicate = votes.find((vote) => vote.categoryId === categoryId);
-    const updatedVotes = duplicate
-      ? votes.map((vote) =>
-          vote.categoryId === categoryId ? { ...vote, participantId } : vote
-        )
-      : [...votes, { categoryId, participantId }];
+  const castVote = (data) =>
+    dispatch({ type: PARTICIPANT_ACTIONS.CAST_VOTE, payload: data });
+  const undoVote = (data) =>
+    dispatch({ type: PARTICIPANT_ACTIONS.UNDO_VOTE, payload: data });
 
-    return setVotes(updatedVotes);
+  // const submitVotes = () => console.log({ SUMBIT: votes });
+
+  const showParticipants = (id) =>
+    dispatch({
+      type: PARTICIPANT_ACTIONS.SHOW_PARTICIPANTS,
+      payload: id,
+    });
+
+  const hideParticipants = (id) =>
+    dispatch({
+      type: PARTICIPANT_ACTIONS.HIDE_PARTICIPANTS,
+      payload: id,
+    });
+
+  // const voteParticipant = (participantId) => {
+  //   console.log({ categoryId, participantId });
+  //   setSelectedParticipantId(participantId);
+  //   setShowParticipants(false);
+  //   return;
+  // };
+
+  return {
+    state: store,
+    handlers: {
+      showParticipants,
+      hideParticipants,
+      castVote,
+      undoVote,
+      // submitVotes,
+    },
   };
-  const removeVote = (categoryId) => {
-    const upddatedVotes = votes.filter(
-      (vote) => categoryId === vote.categoryId
-    );
-    return setVotes(upddatedVotes);
-  };
-
-  const submitVotes = () => console.log({ SUMBIT: votes });
-
-  return { addNewVote, removeVote, submitVotes };
 }

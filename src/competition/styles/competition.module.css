@@ -16,7 +16,7 @@
 
 .submit_votes_btn {
   height: 50px;
-  min-width: 120px;
+  min-width: 130px !important;
   color: white !important;
   background: green !important;
   text-transform: none !important;

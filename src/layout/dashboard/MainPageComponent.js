@@ -8,8 +8,8 @@ function MainPageComponent() {
   const [open, setOpen] = useState(false);
   const [notificationMessage] = useState("error");
   const { competitionId } = useParams();
-  const result = useFetch(["competition", competitionId]);
-  console.log({ result });
+  // const result = useFetch(["competition", competitionId]);
+  // console.log({ result });
 
   const handleClose = (_event, reason) => {
     if (reason === "clickaway") {

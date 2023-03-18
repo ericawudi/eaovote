@@ -40,11 +40,7 @@ function Dashboard() {
             <MenuIcon fontSize="large" onClick={toggleSidebar} /> Admin
           </div>
         )}
-        <Grid
-          item
-          sm={gridSmValue}
-          style={{ background: "red", width: "100%" }}
-        >
+        <Grid item sm={gridSmValue} style={{ width: "100%" }}>
           <MainPageComponent />
         </Grid>
       </Grid>

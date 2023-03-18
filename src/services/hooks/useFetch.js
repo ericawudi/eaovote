@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { APISecuredAxios } from "../../utils/auth";
 import { Constants as K } from "../../utils/constants";
 
@@ -11,8 +11,10 @@ const fetchData = ({ queryKey }) => {
   return APISecuredAxios().get(`${K.App.BASE_API_URL}/${queryKey[0]}`);
 };
 
-export const useFetch = (key) => {
-  return useQuery(key, fetchData, {
-    refetchOnWindowFocus: false,
-  });
-};
+// export const useFetch = (key) => {
+//   return useQuery(key, fetchData, {
+//     refetchOnWindowFocus: false,
+//   });
+// };
+
+export const useFetch = (key) => console.log({ FETCH_DATA: key });

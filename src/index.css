@@ -105,31 +105,6 @@ a:active {
   }
 }
 
-nav {
-  display: flex;
-  flex: 1;
-  overflow: auto;
-  padding-top: 0.4rem;
-}
-
-nav a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  white-space: pre;
-  padding: 0.5rem;
-  padding-left: 1rem;
-  border-radius: 5px;
-  color: inherit;
-  text-decoration: none;
-  gap: 1rem;
-}
-
-nav a:hover {
-  background: #e3e3e3;
-}
-
 nav a.active {
   background: #b9b9b9;
   color: rgb(64, 66, 179);

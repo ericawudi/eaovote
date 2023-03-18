@@ -1,10 +1,13 @@
 import Category from "./category";
 
 export default function Categories() {
+  const categories = ["01", "02"];
+
   return (
     <div>
-      <Category />
-      <Category />
+      {categories.map((idx) => (
+        <Category key={idx} id={idx} />
+      ))}
     </div>
   );
 }

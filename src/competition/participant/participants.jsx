@@ -1,17 +1,20 @@
 import { Grid } from "@mui/material";
 import Participant from "./participant";
-import useCategoryLogicHook from "../logic-hooks/category";
+import useParticipantsLogicHook from "../logic-hooks/participants";
 
 export default function Participants() {
-  const { state, handlers } = useCategoryLogicHook();
-  const { voteParticipant } = handlers;
-  const data = [1, 2, 3, 4];
+  const { participants, selectedParticipantId, onVoteClick } =
+    useParticipantsLogicHook();
 
-  return data.map((item) => (
+  const getv = (item, selectedParticipantId) => {
+    console.log({ item, selectedParticipantId });
+    return item === selectedParticipantId;
+  };
+  return participants.map((item) => (
     <Grid item key={item}>
       <Participant
-        onSelect={() => voteParticipant(item)}
-        isSelected={item === state.selectedPartipantId}
+        onSelect={() => onVoteClick(item)}
+        isSelected={getv(item, selectedParticipantId)}
       />
     </Grid>
   ));
