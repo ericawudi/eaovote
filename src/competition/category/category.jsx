@@ -10,7 +10,7 @@ import { Grid } from "@mui/material";
 import Participants from "../participant/participants";
 
 export default function Category(props) {
-  const { name, showParticipants, toggleOpen } = props;
+  const { category, showParticipants, toggleOpen } = props;
 
   return (
     <div>
@@ -29,7 +29,7 @@ export default function Category(props) {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={name} />
+          <ListItemText primary={category.name} />
           {showParticipants ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={showParticipants} timeout="auto" unmountOnExit>
@@ -40,7 +40,7 @@ export default function Category(props) {
             justifyContent="center"
             sx={{ padding: "20px", width: "100%" }}
           >
-            <Participants />
+            <Participants categoryId={category.id} />
           </Grid>
         </Collapse>
       </List>

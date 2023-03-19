@@ -10,7 +10,7 @@ export default function Categories() {
       {categories.map((cat, idx) => (
         <Category
           key={`${cat.id}_${idx}`}
-          name={cat.name}
+          category={cat}
           showParticipants={isOpened(`${cat.id}_${idx}`)}
           toggleOpen={() => toggleShowParticipants(`${cat.id}_${idx}`)}
         />

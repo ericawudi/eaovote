@@ -5,7 +5,7 @@ import {
 } from "../actions/competitions";
 
 const initialState = {
-  currentCompetionId: null,
+  currentCompetitionId: null,
   competitions: [],
   categories: [],
 };
@@ -16,7 +16,7 @@ export default function competionReducer(state = initialState, action) {
     case SET_COMPETIONS:
       return { ...state, competitions: payload };
     case SET_CURRENT_COMPETITION:
-      return { ...state, currentCompetionId: payload };
+      return { ...state, currentCompetitionId: payload };
     case SET_CATEGORIES:
       return { ...state, categories: payload };
     default:
