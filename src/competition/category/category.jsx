@@ -8,11 +8,9 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import Participants from "../participant/participants";
-import useCategoryLogicHook from "../logic-hooks/category";
 
-export default function Category({ id }) {
-  const { isShowParticipants, toggleShowParticipants } =
-    useCategoryLogicHook(id);
+export default function Category(props) {
+  const { name, showParticipants, toggleOpen } = props;
 
   return (
     <div>
@@ -25,16 +23,16 @@ export default function Category({ id }) {
         component="nav"
       >
         <ListItemButton
-          onClick={toggleShowParticipants}
+          onClick={toggleOpen}
           sx={{ bgcolor: "ButtonHighlight" }}
         >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Competion Category" />
-          {isShowParticipants ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText primary={name} />
+          {showParticipants ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={isShowParticipants} timeout="auto" unmountOnExit>
+        <Collapse in={showParticipants} timeout="auto" unmountOnExit>
           <Grid
             container
             alignItems="center"

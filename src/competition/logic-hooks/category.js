@@ -1,13 +1,25 @@
-import { useCompetitionContext } from "../index/competition-provider";
-export default function useCategoryLogicHook(id) {
-  const { state, handlers } = useCompetitionContext();
-  const { showParticipants, hideParticipants } = handlers;
-  const { openedCategories } = state.categorySlice;
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-  const isShowParticipants = openedCategories.includes(id);
+export default function useCategoryLogicHook() {
+  const { categories } = useSelector((state) => state.competitionSlice);
+  const [openedCategories, setOpenedCategories] = useState([]);
 
-  const toggleShowParticipants = () =>
-    isShowParticipants ? hideParticipants(id) : showParticipants(id);
+  const params = useParams();
 
-  return { isShowParticipants, toggleShowParticipants };
+  console.log({ params });
+
+  const showParticipants = (id) => setOpenedCategories((prev) => [...prev, id]);
+  const hideParticipants = (id) =>
+    setOpenedCategories((prev) => prev.filter((catId) => catId !== id));
+
+  const isOpened = (id) => openedCategories.includes(id);
+
+  const toggleShowParticipants = (id) => {
+    const listOpened = isOpened(id);
+    return listOpened ? hideParticipants(id) : showParticipants(id);
+  };
+
+  return { categories, toggleShowParticipants, isOpened };
 }
