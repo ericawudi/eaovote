@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from "react-pro-sidebar";
+import { Menu } from "react-pro-sidebar";
 // import { useFetch } from "../../services/hooks/useFetch";
 import Loader from "../../components/Loader";
 import SideBarWrapper from "./SideBarWrapper";

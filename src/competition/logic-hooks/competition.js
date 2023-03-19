@@ -1,44 +1,9 @@
-import { useReducer } from "react";
-import reducer, { initialState } from "../store/competion-duck";
-import { PARTICIPANT_ACTIONS } from "../store/competion-actions";
+import { useSelector } from "react-redux";
 
-export default function useCompetitionLogicHook() {
-  const [store, dispatch] = useReducer(reducer, initialState);
+export default function useCompetitionHeaderLogicHook() {
+  const { votes } = useSelector((state) => state.votesSlice);
 
-  const castVote = (data) =>
-    dispatch({ type: PARTICIPANT_ACTIONS.CAST_VOTE, payload: data });
-  const undoVote = (data) =>
-    dispatch({ type: PARTICIPANT_ACTIONS.UNDO_VOTE, payload: data });
+  const submitVotes = () => console.log("submitting votes...", votes);
 
-  // const submitVotes = () => console.log({ SUMBIT: votes });
-
-  const showParticipants = (id) =>
-    dispatch({
-      type: PARTICIPANT_ACTIONS.SHOW_PARTICIPANTS,
-      payload: id,
-    });
-
-  const hideParticipants = (id) =>
-    dispatch({
-      type: PARTICIPANT_ACTIONS.HIDE_PARTICIPANTS,
-      payload: id,
-    });
-
-  // const voteParticipant = (participantId) => {
-  //   console.log({ categoryId, participantId });
-  //   setSelectedParticipantId(participantId);
-  //   setShowParticipants(false);
-  //   return;
-  // };
-
-  return {
-    state: store,
-    handlers: {
-      showParticipants,
-      hideParticipants,
-      castVote,
-      undoVote,
-      // submitVotes,
-    },
-  };
+  return { submitVotes };
 }

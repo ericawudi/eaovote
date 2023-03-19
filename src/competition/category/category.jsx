@@ -6,7 +6,7 @@ import Collapse from "@mui/material/Collapse";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Grid } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import Participants from "../participant/participants";
 
 export default function Category(props) {
@@ -22,16 +22,18 @@ export default function Category(props) {
         }}
         component="nav"
       >
-        <ListItemButton
-          onClick={toggleOpen}
-          sx={{ bgcolor: "ButtonHighlight" }}
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={category.name} />
-          {showParticipants ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+        <Paper>
+          <ListItemButton
+            onClick={toggleOpen}
+            sx={{ bgcolor: "ButtonHighlight" }}
+          >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={category.name} />
+            {showParticipants ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+        </Paper>
         <Collapse in={showParticipants} timeout="auto" unmountOnExit>
           <Grid
             container
