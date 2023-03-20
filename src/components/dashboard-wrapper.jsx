@@ -1,6 +1,4 @@
 import { useState } from "react";
-import MainPageComponent from "../layout/dashboard/MainPageComponent";
-import ContextProvider from "../layout/dashboard/ContextProvider";
 import SideBarNav from "../layout/sidebar/SideBarNav";
 import { Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,7 +16,7 @@ const styles = {
     paddingLeft: "10px",
   },
 };
-function Dashboard() {
+export default function DashboardWrapper({ children }) {
   const [showDrawer, setShowDrawer] = useState(false);
   const width = useSreenWidth();
   const showSidebar = width > MINIMUM_WIDTH;
@@ -41,11 +39,9 @@ function Dashboard() {
           </div>
         )}
         <Grid item sm={gridSmValue} style={{ width: "100%" }}>
-          <MainPageComponent />
+          {children}
         </Grid>
       </Grid>
     </div>
   );
 }
-
-export default Dashboard;

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import authReducer from "./auth";
 import uiReducer from "./ui";
-import competionReducer from "./competitions";
-import votesReducer from "./votes";
+import competionReducer from "./user/competitions";
+import votesReducer from "./user/votes";
 
 const rootReducer = combineReducers({
   uiSlice: uiReducer,

@@ -1,26 +1,22 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Notification from "../../components/Notification";
-import { useFetch } from "../../services/useFetch";
 import Competition from "../../competition/index/competition";
+import AdminComponent from "../../admin/index/admin-component";
 
 function MainPageComponent() {
+  const { isAdmin } = useSelector((state) => state.authSlice);
   const [open, setOpen] = useState(false);
   const [notificationMessage] = useState("error");
-  const { competitionId } = useParams();
-  // const result = useFetch(["competition", competitionId]);
-  // console.log({ result });
 
   const handleClose = (_event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+    if (reason === "clickaway") return;
     setOpen(false);
   };
 
   return (
     <div>
-      <Competition />
+      {isAdmin ? <AdminComponent /> : <Competition />}
       <Notification
         severity="error"
         message={notificationMessage}
