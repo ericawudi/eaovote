@@ -8,6 +8,7 @@ const initialState = {
   currentCompetitionId: null,
   competitions: [],
   categories: [],
+  user: null,
 };
 
 export default function competionReducer(state = initialState, action) {

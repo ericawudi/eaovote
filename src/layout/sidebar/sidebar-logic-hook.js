@@ -40,5 +40,5 @@ export default function useSidebarLogicHook() {
   };
 
   const selectedNavItems = isAdmin ? ADMIN_NAVS : competitions;
-  return { selectedNavItems, handleCategoryClick };
+  return { selectedNavItems, competitions, handleCategoryClick };
 }

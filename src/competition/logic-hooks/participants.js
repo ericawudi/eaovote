@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { castNewVote, cancelVote } from "../../libs/redux/actions/votes";
 
 export default function useParticipantsLogicHook(categoryId) {

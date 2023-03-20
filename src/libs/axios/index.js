@@ -22,7 +22,7 @@ function makePostRequest(url) {
       const response = await APISecuredAxios().post(endpoint, data);
       return { err: false, data: response.data };
     } catch (err) {
-      return { err: true, message: err.response.data };
+      return { err: true, data: err.response.data };
     }
   };
 }
