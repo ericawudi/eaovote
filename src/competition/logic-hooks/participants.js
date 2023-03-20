@@ -4,17 +4,12 @@ import { castNewVote, cancelVote } from "../../libs/redux/actions/votes";
 
 export default function useParticipantsLogicHook(categoryId) {
   const dispatch = useDispatch();
+  const { id: voterId } = useSelector((state) => state.authSlice);
   const { participants } = useSelector((state) => state.votesSlice);
   const { currentCompetitionId } = useSelector(
     (state) => state.competitionSlice
   );
   const [selectedParticipantId, setSelectedParticipantId] = useState(null);
-
-  // const { state, handlers } = useCompetitionContext();
-  // const { participants, selectedParticipantId } = state.participantSlice;
-  // const { currentCategoryId } = state.categorySlice;
-  // const { currentCompetitionId } = state.competitionSlice;
-  // const { castVote, undoVote } = handlers;
 
   const castVote = (data) => dispatch(castNewVote(data));
   const undoVote = (id) => dispatch(cancelVote(id));
@@ -26,6 +21,7 @@ export default function useParticipantsLogicHook(categoryId) {
       ? undoVote(categoryId)
       : castVote({
           categoryId,
+          voterId,
           participantId: id,
           competitionId: currentCompetitionId,
         });

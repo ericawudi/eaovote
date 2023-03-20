@@ -8,7 +8,7 @@ import useSidebarLogicHook from "./sidebar-logic-hook";
 
 function SideBarNav() {
   // const result = useFetch("competition");
-  const { competitions, handleCategoryClick } = useSidebarLogicHook();
+  const { selectedNavItems, handleCategoryClick } = useSidebarLogicHook();
 
   const result = { isLoading: false, isError: false };
 
@@ -28,15 +28,15 @@ function SideBarNav() {
       <Menu className={classes.sidebar__nav}>
         <h2 className={classes.sidebar__title}>Admin</h2>
 
-        {competitions.map((navItem) => {
+        {selectedNavItems.map((navItem) => {
           return (
             <NavLink
               key={navItem.id}
               className={({ isActive }) => (isActive ? "active" : "")}
-              to={`/${navItem.id}`}
+              to={`/${navItem.id.toLowerCase()}`}
               onClick={() => handleCategoryClick(navItem.id)}
             >
-              {navItem.name}
+              <p className={classes.sidebar__nav_item}>{navItem.name}</p>
             </NavLink>
           );
         })}

@@ -10,9 +10,18 @@ import {
   setCategories,
 } from "../../libs/redux/actions/competitions";
 
+const ADMIN_NAVS = [
+  "Competitions",
+  "Categories",
+  "Participants",
+  "Reports",
+  "Users",
+].map((item) => ({ id: item, name: item }));
+
 export default function useSidebarLogicHook() {
   const dispatch = useDispatch();
   const { competitions } = useSelector((state) => state.competitionSlice);
+  const { isAdmin } = useSelector((state) => state.authSlice);
 
   useEffect(() => {
     const getCompetions = async () => {
@@ -30,5 +39,6 @@ export default function useSidebarLogicHook() {
     return dispatch(setCategories(res.data));
   };
 
-  return { competitions, handleCategoryClick };
+  const selectedNavItems = isAdmin ? ADMIN_NAVS : competitions;
+  return { selectedNavItems, handleCategoryClick };
 }

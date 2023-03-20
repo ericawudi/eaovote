@@ -36,3 +36,10 @@
 .sidebar__nav a:hover {
   background: #e3e3e3;
 }
+
+.sidebar__nav_item {
+  font-size: 18px;
+  text-align: left;
+  min-width: 70%;
+  /* margin: 3px 15%; */
+}
