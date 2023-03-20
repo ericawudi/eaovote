@@ -1,4 +1,4 @@
-const initialState = { id: null, isAdmin: true };
+const initialState = { id: null, isAdmin: false };
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {

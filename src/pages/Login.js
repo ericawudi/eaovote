@@ -6,13 +6,19 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
-import { CircularProgress, Paper, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  Paper,
+  Typography,
+  Radio,
+  Grid,
+} from "@mui/material";
 import Copyright from "../components/Copyright";
 import { useForm } from "react-hook-form";
 import Notification from "../components/Notification";
 import { useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
-import { loginUser } from "../utils/helper";
+import { loginUser, setAuthCookie } from "../services/login-logout";
 
 function Login() {
   const [open, setOpen] = useState(false);
@@ -22,18 +28,16 @@ function Login() {
 
   const onSubmit = async (data, _event) => {
     setLoading(true);
-    setTimeout(async () => {
-      const { username, password } = data;
-
-      const response = await loginUser(username, password);
-      if (response.data?.status === 200) {
-        navigate("/");
-      } else {
-        setNotificationMessage(response.data.message);
-        setOpen(true);
-      }
-      setLoading(false);
-    }, 10000);
+    console.log({ data });
+    const response = await loginUser(data);
+    console.log(response);
+    // if (response.data?.status === 200) {
+    //   navigate("/");
+    // } else {
+    //   setNotificationMessage(response.data.message);
+    //   setOpen(true);
+    // }
+    setLoading(false);
   };
 
   const handleClose = (_event, reason) => {
@@ -47,7 +51,7 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { isAdmin: false } });
   return (
     <div className="login">
       <Container
@@ -56,6 +60,7 @@ function Login() {
         style={{
           display: "flex",
           alignSelf: "center",
+          alignItems: "center",
         }}
       >
         <CssBaseline />
@@ -137,6 +142,15 @@ function Login() {
                 type="password"
                 autoComplete="current-password"
               />
+              <Grid container justifyContent="flex-end">
+                <p>I am an admin</p>
+                <Radio
+                  {...register("isAdmin", {
+                    // required: { value: true, message: "Field is required" },
+                  })}
+                  error={errors?.isAdmin && true}
+                />
+              </Grid>
               <Button
                 type="submit"
                 fullWidth
