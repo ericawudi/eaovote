@@ -1,14 +1,14 @@
-import APISecuredAxios, { constants } from "./config";
+import APISecuredAxios from "./config";
 
 const BASE_URL = "http://54.187.241.43:3001";
 
 function makeGetRequest(url) {
-  return async () => {
+  return async (authToken) => {
     try {
       const endpoint = BASE_URL + url;
-      const { data } = await APISecuredAxios().get(
-        `${constants.App.BASE_API_URL}/${endpoint}`
-      );
+      const { data } = await APISecuredAxios().get(endpoint, {
+        headers: { Authorization: authToken },
+      });
       return { err: false, data };
     } catch (err) {
       return { err: true, message: err.message };

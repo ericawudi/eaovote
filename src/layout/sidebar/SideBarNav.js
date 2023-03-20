@@ -9,6 +9,7 @@ import useSidebarLogicHook from "./sidebar-logic-hook";
 function SideBarNav() {
   // const result = useFetch("competition");
   const { selectedNavItems, handleCategoryClick } = useSidebarLogicHook();
+  console.log({ selectedNavItems });
 
   const result = { isLoading: false, isError: false };
 

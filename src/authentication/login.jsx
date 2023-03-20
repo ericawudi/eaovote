@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { green } from "@mui/material/colors";
 import { CircularProgress, Typography, Radio, Grid, Box } from "@mui/material";
 import Notification from "../components/Notification";
-import useLoginLogic from "../pages/login-logic-hook";
+import useLoginLogic from "./login-logic-hook";
 
 export default function LoginForm() {
   const { state, handlers } = useLoginLogic();

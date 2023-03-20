@@ -23,7 +23,7 @@ export default function useLoginLogic() {
     } else {
       const { accessToken: authToken } = data.data.authToken;
       setAuthCookie(authToken);
-      dispatch(setUserInfo({ ...data.data, authToken }));
+      dispatch(setUserInfo({ ...data.data, authToken: `Bearer ${authToken}` }));
       navigate("/");
     }
     setLoading(false);

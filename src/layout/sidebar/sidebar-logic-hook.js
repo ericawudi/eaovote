@@ -21,22 +21,22 @@ const ADMIN_NAVS = [
 export default function useSidebarLogicHook() {
   const dispatch = useDispatch();
   const { competitions } = useSelector((state) => state.competitionSlice);
-  const { isAdmin } = useSelector((state) => state.authSlice);
+  const { isAdmin, authToken } = useSelector((state) => state.authSlice);
 
   useEffect(() => {
     const getCompetions = async () => {
-      const res = await fetchAllCompetionsAPIRequest();
+      const res = await fetchAllCompetionsAPIRequest(authToken);
       if (res.err) return console.log({ FETCH_FAILED: res.message });
-      return dispatch(setCompetitons(res.data));
+      return dispatch(setCompetitons(res.data.data));
     };
     getCompetions();
-  }, [dispatch]);
+  }, [dispatch, authToken]);
 
   const handleCategoryClick = async (id) => {
     dispatch(setCurrentCompetition(id));
-    const res = await fetchAllCategoriesAPIRequest();
+    const res = await fetchAllCategoriesAPIRequest(authToken);
     if (res.err) return console.log({ FETCH_CATEGORIES_FAILED: res.message });
-    return dispatch(setCategories(res.data));
+    return dispatch(setCategories(res.data.data));
   };
 
   const selectedNavItems = isAdmin ? ADMIN_NAVS : competitions;

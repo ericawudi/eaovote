@@ -3,7 +3,7 @@ import Cookies from "universal-cookie";
 
 export const constants = {
   App: {
-    BASE_API_URL: "http://localhost:4000",
+    BASE_API_URL: "http://54.187.241.43:3001",
     PRIVILEGE: "privilege",
     API_ACCESS: "access_level",
     API_TOKEN: "eaodesigns",
