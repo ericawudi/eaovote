@@ -2,7 +2,8 @@ import { TextField, MenuItem } from "@mui/material";
 import classes from "./forms.module.css";
 
 function TextInput(props) {
-  const { register, errors, name, label } = props;
+  const { register, error, name, label } = props;
+  console.log("TEST_INPUT", error);
   return (
     <TextField
       {...register(name, {
@@ -19,18 +20,18 @@ function TextInput(props) {
           message: "Unacceptable character(s) found",
         },
       })}
-      error={errors?.username && true}
+      error={!!error}
       margin="normal"
       fullWidth
       label={label}
       autoComplete="username"
-      autoFocus
+      helperText={error?.message}
       className={classes.form__input}
     />
   );
 }
 function PasswordInput(props) {
-  const { register, errors } = props;
+  const { register, error } = props;
   return (
     <TextField
       {...register("password", {
@@ -47,11 +48,12 @@ function PasswordInput(props) {
           message: "Unacceptable character(s) found",
         },
       })}
-      error={errors?.password && true}
+      error={!!error}
       margin="normal"
       fullWidth
       label="Password*"
       type="password"
+      helperText={error?.message}
       autoComplete="current-password"
       className={classes.form__input}
     />
@@ -59,7 +61,7 @@ function PasswordInput(props) {
 }
 
 function NumberInput(props) {
-  const { register, errors, name, label } = props;
+  const { register, error, name, label } = props;
   return (
     <TextField
       {...register(name, {
@@ -76,12 +78,12 @@ function NumberInput(props) {
           message: "Unacceptable character(s) found",
         },
       })}
-      error={errors?.username && true}
+      error={!!error}
       margin="normal"
       fullWidth
       label={label}
       autoComplete="username"
-      autoFocus
+      helperText={error?.message}
       type="number"
       className={classes.form__input}
     />
@@ -89,7 +91,7 @@ function NumberInput(props) {
 }
 
 function SelectInput(props) {
-  const { register, errors, name, label, options } = props;
+  const { register, error, name, label, options } = props;
   return (
     <TextField
       {...register(name, {
@@ -106,13 +108,14 @@ function SelectInput(props) {
           message: "Unacceptable character(s) found",
         },
       })}
-      error={errors?.username && true}
+      error={!!error}
       margin="normal"
       fullWidth
       label={label}
       autoComplete="username"
-      autoFocus
+      helperText={error?.message}
       select
+      defaultValue={options[0]?.value}
       className={classes.form__input}
     >
       {options.map((option) => (

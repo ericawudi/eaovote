@@ -2,7 +2,7 @@ import {
   SET_COMPETIONS,
   SET_CURRENT_COMPETITION,
   SET_CATEGORIES,
-} from "../../actions/competitions";
+} from "../actions/competitions";
 
 const initialState = {
   currentCompetitionId: null,

@@ -1,29 +1,10 @@
-import Button from "@mui/material/Button";
-import { Typography, Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 export default function FormContainer(props) {
-  const { errors, loading, handleSubmit, onSubmit, children } = props;
+  const { loading, handleSubmit, onSubmit, children } = props;
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit(onSubmit)}
-      //   noValidate
-    >
-      {Object.keys(errors).map((key, index) => (
-        <div key={index++}>
-          <Typography
-            variant="caption"
-            color={"red"}
-            gutterBottom
-            align="center"
-          >
-            {`${key.charAt(0).toUpperCase() + key.slice(1)}: ${
-              errors[key].message
-            }`}
-          </Typography>
-        </div>
-      ))}
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       {children}
       <Button
         type="submit"

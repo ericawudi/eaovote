@@ -1,5 +1,5 @@
-import { CAST_VOTE, SET_PARTICIPANTS, UNDO_VOTE } from "../../actions/votes";
-import { addNewVote, removeVote } from "../../utils/votes";
+import { CAST_VOTE, SET_PARTICIPANTS, UNDO_VOTE } from "../actions/votes";
+import { addNewVote, removeVote } from "../utils/votes";
 const initialState = {
   participants: [1, 2, 3, 4],
   votes: [],
