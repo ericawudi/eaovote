@@ -30,7 +30,7 @@ export default function Participants() {
 
   return (
     <PageTemplateLayout
-      helperText={`There are ${participantCount} competitions`}
+      helperText={`There are ${participantCount} participants`}
       createButtonClick={() => showActionModal(ACTIONS.createActor)}
     >
       <DataTable title={TITLE} columns={columns} data={data} />
