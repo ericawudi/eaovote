@@ -1,7 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Admins from "../admins/containers/admins";
+import Competitions from "../competitons/containers/competitions";
 
-const components = [{ title: "Admins", url: "/", Component: Admins }];
+const components = [
+  { title: "Admins", url: "/admin-list", Component: Admins },
+  { title: "Competitions", url: "/competitions", Component: Competitions },
+];
 export default function AdminComponent() {
   return (
     <div style={{ paddingLeft: "30px", paddingRight: "30px" }}>
