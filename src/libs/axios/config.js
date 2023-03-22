@@ -26,10 +26,5 @@ export default function APISecuredAxios() {
 }
 
 // Check if logged in
-export function isAuthenticated() {
-  if (cookies.get(constants.App.API_TOKEN)) {
-    return true;
-  } else {
-    return true;
-  }
-}
+export const isAuthenticated = () =>
+  Boolean(cookies.get(constants.App.API_TOKEN));

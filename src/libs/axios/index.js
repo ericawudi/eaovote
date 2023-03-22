@@ -3,9 +3,10 @@ import APISecuredAxios from "./config";
 const BASE_URL = "http://54.187.241.43:3001";
 
 function makeGetRequest(url) {
-  return async (authToken) => {
+  return async (authToken, ...paths) => {
     try {
-      const endpoint = BASE_URL + url;
+      const subUrl = paths.reduce((res, cur) => res + cur, "");
+      const endpoint = BASE_URL + url + subUrl;
       const { data } = await APISecuredAxios().get(endpoint, {
         headers: { Authorization: authToken },
       });

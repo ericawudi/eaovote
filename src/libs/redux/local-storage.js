@@ -8,7 +8,7 @@ const saveStateToLocalStorage = (state) => {
     console.log(err);
   }
 };
-
+// localStorage.clear();
 const loadStateFromLocalStorage = () => {
   try {
     const serializedState = localStorage.getItem(LOCAL_STORE_KEY);

@@ -34,7 +34,7 @@ function SideBarNav() {
             <NavLink
               key={navItem.id}
               className={({ isActive }) => (isActive ? "active" : "")}
-              to={`/${navItem.id.toLowerCase()}`}
+              to={`/${navItem.id}`}
               onClick={() => handleCategoryClick(navItem.id)}
             >
               <p className={classes.sidebar__nav_item}>{navItem.name}</p>

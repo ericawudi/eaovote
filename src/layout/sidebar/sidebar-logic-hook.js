@@ -29,12 +29,12 @@ export default function useSidebarLogicHook() {
       if (res.err) return console.log({ FETCH_FAILED: res.message });
       return dispatch(setCompetitons(res.data.data));
     };
-    getCompetions();
-  }, [dispatch, authToken]);
+    !isAdmin && getCompetions();
+  }, [dispatch, authToken, isAdmin]);
 
   const handleCategoryClick = async (id) => {
     dispatch(setCurrentCompetition(id));
-    const res = await fetchAllCategoriesAPIRequest(authToken);
+    const res = await fetchAllCategoriesAPIRequest(authToken, id);
     if (res.err) return console.log({ FETCH_CATEGORIES_FAILED: res.message });
     return dispatch(setCategories(res.data.data));
   };
