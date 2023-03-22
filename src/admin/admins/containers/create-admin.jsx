@@ -8,7 +8,7 @@ import {
 } from "../../../components/form/forms-inputs";
 import useCreateAdminLogicHook from "../logic-hooks/create-admin";
 
-export default function CreateAdmin() {
+export default function CreateCompetition() {
   const { state, handlers } = useCreateAdminLogicHook();
   const { register, errors, isLoading } = state;
   const { handleSubmit, onSubmit } = handlers;

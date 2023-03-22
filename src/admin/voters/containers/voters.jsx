@@ -2,12 +2,12 @@ import CustomModal from "../../components/custom-modal";
 import PageTemplateLayout from "../../components/page-layout-template";
 import DataTable from "../../components/mui-data-table";
 import ActionButtons from "../../components/action-buttons";
-import CreateCompetition from "./create-competition";
-import useCompetitionLogicHook from "../logic-hooks/competition";
+import CreateVoter from "./create-voter";
+import useVotersLogicHook from "../logic-hooks/voters";
 
-export default function Competitions() {
-  const { state, modal, handlers } = useCompetitionLogicHook();
-  const { competitions, columns, TITLE } = state;
+export default function Voters() {
+  const { state, modal, handlers } = useVotersLogicHook();
+  const { voters, columns, TITLE } = state;
   const { showActionModal, closeActionModal } = handlers;
   const {
     ACTIONS,
@@ -18,7 +18,7 @@ export default function Competitions() {
     // showViewContent,
   } = modal;
 
-  const data = competitions.map((row, idx) => [
+  const data = voters.map((row, idx) => [
     ...row,
     <ActionButtons
       onEdit={() => showActionModal(ACTIONS.editActor, idx)}
@@ -26,16 +26,16 @@ export default function Competitions() {
       onDelete={() => showActionModal(ACTIONS.deleteActor, idx)}
     />,
   ]);
-  const competitionCount = competitions.length;
+  const voterCount = voters.length;
 
   return (
     <PageTemplateLayout
-      helperText={`There are ${competitionCount} competitions`}
+      helperText={`There are ${voterCount} competitions`}
       createButtonClick={() => showActionModal(ACTIONS.createActor)}
     >
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
-        {showCreateContent && <CreateCompetition />}
+        {showCreateContent && <CreateVoter />}
         {/* {showEditContent && <EditCompetition />}
         {showDeleteContent && <DeleteCompetition />}
         {showViewContent && <ViewCompetition />} */}

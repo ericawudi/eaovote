@@ -2,12 +2,12 @@ import CustomModal from "../../components/custom-modal";
 import PageTemplateLayout from "../../components/page-layout-template";
 import DataTable from "../../components/mui-data-table";
 import ActionButtons from "../../components/action-buttons";
-import CreateCompetition from "./create-competition";
-import useCompetitionLogicHook from "../logic-hooks/competition";
+import CreateCategory from "./create-category";
+import useCategoryLogicHook from "../logic-hooks/category";
 
-export default function Competitions() {
-  const { state, modal, handlers } = useCompetitionLogicHook();
-  const { competitions, columns, TITLE } = state;
+export default function Categories() {
+  const { state, modal, handlers } = useCategoryLogicHook();
+  const { categories, columns, TITLE } = state;
   const { showActionModal, closeActionModal } = handlers;
   const {
     ACTIONS,
@@ -18,7 +18,7 @@ export default function Competitions() {
     // showViewContent,
   } = modal;
 
-  const data = competitions.map((row, idx) => [
+  const data = categories.map((row, idx) => [
     ...row,
     <ActionButtons
       onEdit={() => showActionModal(ACTIONS.editActor, idx)}
@@ -26,19 +26,19 @@ export default function Competitions() {
       onDelete={() => showActionModal(ACTIONS.deleteActor, idx)}
     />,
   ]);
-  const competitionCount = competitions.length;
+  const categoryCount = categories.length;
 
   return (
     <PageTemplateLayout
-      helperText={`There are ${competitionCount} competitions`}
+      helperText={`There are ${categoryCount} categories`}
       createButtonClick={() => showActionModal(ACTIONS.createActor)}
     >
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
-        {showCreateContent && <CreateCompetition />}
-        {/* {showEditContent && <EditCompetition />}
-        {showDeleteContent && <DeleteCompetition />}
-        {showViewContent && <ViewCompetition />} */}
+        {showCreateContent && <CreateCategory />}
+        {/* {showEditContent && <EditCategory />}
+        {showDeleteContent && <DeleteCategory />}
+        {showViewContent && <ViewCategory />} */}
       </CustomModal>
     </PageTemplateLayout>
   );

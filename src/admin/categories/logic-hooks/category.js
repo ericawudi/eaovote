@@ -1,16 +1,16 @@
 import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
 
-const TITLE = "Competitions";
-const columns = ["Competition", "Created By", "Actions"];
-const competitions = [
+const TITLE = "Categories";
+const columns = ["Category", "Competition", "Actions"];
+const categories = [
   ["jamesjoe", "Joe James"],
   ["jamesjoe", "Joe James"],
   ["jamesjoe", "Joe James"],
   ["jamesjoe", "Joe James"],
 ];
 
-export default function useCompetitionLogicHook() {
+export default function useCategoryLogicHook() {
   const [selectedAdminId, setSelectedAdminId] = useState("");
   const {
     ACTIONS,
@@ -26,7 +26,7 @@ export default function useCompetitionLogicHook() {
   const showActionModal = openModal(setSelectedAdminId);
 
   return {
-    state: { TITLE, columns, competitions },
+    state: { TITLE, columns, categories },
     modal: {
       ACTIONS,
       showModal,
