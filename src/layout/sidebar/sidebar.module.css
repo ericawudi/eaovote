@@ -6,9 +6,8 @@
 
 .sidebar__title {
   margin: 0;
-  text-align: left;
+  text-align: center;
   padding: 7px;
-  padding-left: 3rem;
 }
 .sidebar__logout {
   margin: 0;
@@ -39,13 +38,8 @@
 }
 
 .sidebar__nav_item {
-  display: flex;
-  align-items: center;
   font-size: 18px;
   text-align: left;
   min-width: 70%;
   /* margin: 3px 15%; */
-}
-.sidebar__nav_item p {
-  margin-left: 7px;
 }

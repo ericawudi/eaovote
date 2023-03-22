@@ -30,15 +30,15 @@ export default function Voters() {
 
   return (
     <PageTemplateLayout
-      helperText={`There are ${voterCount} voters`}
+      helperText={`There are ${voterCount} competitions`}
       createButtonClick={() => showActionModal(ACTIONS.createActor)}
     >
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
         {showCreateContent && <CreateVoter />}
-        {/* {showEditContent && <EditVoter />}
-        {showDeleteContent && <DeleteVoter />}
-        {showViewContent && <ViewVoter />} */}
+        {/* {showEditContent && <EditCompetition />}
+        {showDeleteContent && <DeleteCompetition />}
+        {showViewContent && <ViewCompetition />} */}
       </CustomModal>
     </PageTemplateLayout>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
 
 const TITLE = "Voters";
-const columns = ["Voter", "Full name", "email", "Contact", "Actions"];
+const columns = ["Voter", "Fullname", "email", "Contact", "Actions"];
 const voters = [
   ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],
   ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],

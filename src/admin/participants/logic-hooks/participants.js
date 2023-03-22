@@ -2,7 +2,7 @@ import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
 
 const TITLE = "Participants";
-const columns = ["Full name", "Competition", "Category", "Actions"];
+const columns = ["Fullname", "Competition", "Category", "Actions"];
 const participants = [
   ["Joe James", "Competition A", "Category AB"],
   ["Joe James", "Competition A", "Category AB"],

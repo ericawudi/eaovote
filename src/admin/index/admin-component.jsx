@@ -12,7 +12,7 @@ const components = [
   { title: "Participants", url: "/participants", Component: Participants },
   { title: "Competitions", url: "/competitions", Component: Competitions },
   { title: "Categories", url: "/categories", Component: Categories },
-  { title: "Reports", url: "/", Component: Reports },
+  { title: "Reports", url: "/reports", Component: Reports },
 ];
 export default function AdminComponent() {
   return (

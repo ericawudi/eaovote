@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ADMIN_NAVS from "../../admin/index/admin-nav-urls";
 import {
   fetchAllCompetionsAPIRequest,
   fetchAllCategoriesAPIRequest,
@@ -10,6 +9,14 @@ import {
   setCompetitons,
   setCategories,
 } from "../../libs/redux/actions/competitions";
+
+const ADMIN_NAVS = [
+  "Competitions",
+  "Categories",
+  "Participants",
+  "Reports",
+  "Users",
+].map((item) => ({ id: item, name: item }));
 
 export default function useSidebarLogicHook() {
   const dispatch = useDispatch();
@@ -26,7 +33,6 @@ export default function useSidebarLogicHook() {
   }, [dispatch, authToken, isAdmin]);
 
   const handleCategoryClick = async (id) => {
-    if (isAdmin) return;
     dispatch(setCurrentCompetition(id));
     const res = await fetchAllCategoriesAPIRequest(authToken, id);
     if (res.err) return console.log({ FETCH_CATEGORIES_FAILED: res.message });
