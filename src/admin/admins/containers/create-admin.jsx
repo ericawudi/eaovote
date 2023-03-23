@@ -22,29 +22,57 @@ export default function CreateCompetition() {
       >
         <TextInput
           register={register}
+          name="company_name"
+          label="Company Name*"
+          error={errors.company_name}
+        />
+        <TextInput
+          register={register}
           name="fullname"
           label="Full Name*"
           error={errors.fullname}
         />
         <TextInput
           register={register}
-          name="username"
-          label="Username*"
-          error={errors.username}
-        />
-        <PasswordInput register={register} error={errors.password} />
-        <TextInput
-          register={register}
           name="email"
           label="Email*"
           error={errors.email}
         />
-        <NumberInput
-          register={register}
-          name="msisdn"
-          label="Phone Number*"
-          error={errors.msisdn}
-        />
+        <Grid container justifyContent="space-between" sx={{ width: "100%" }}>
+          <Grid item sx={{ width: "49%" }}>
+            <TextInput
+              register={register}
+              name="username"
+              label="Username*"
+              error={errors.username}
+            />
+          </Grid>
+          <Grid item sx={{ width: "49%" }}>
+            <SelectInput
+              register={register}
+              name="account_type"
+              label="Account Type*"
+              error={errors.account_type}
+              options={[
+                { label: "Admin", value: "admin" },
+                { label: "Super Admin", value: "superadmin" },
+              ]}
+            />
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="space-between" sx={{ width: "100%" }}>
+          <Grid item sx={{ width: "49%" }}>
+            <PasswordInput register={register} error={errors.password} />
+          </Grid>
+          <Grid item sx={{ width: "49%" }}>
+            <NumberInput
+              register={register}
+              name="msisdn"
+              label="Phone Number*"
+              error={errors.msisdn}
+            />
+          </Grid>
+        </Grid>
         <Grid container justifyContent="space-between" sx={{ width: "100%" }}>
           <Grid item sx={{ width: "49%" }}>
             <SelectInput
@@ -67,12 +95,6 @@ export default function CreateCompetition() {
             />
           </Grid>
         </Grid>
-        <TextInput
-          register={register}
-          name="company_name"
-          label="Company Name*"
-          error={errors.company_name}
-        />
       </FormContainer>
     </div>
   );

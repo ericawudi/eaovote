@@ -1,5 +1,6 @@
 import { Menu } from "react-pro-sidebar";
 // import { useFetch } from "../../services/hooks/useFetch";
+import PollIcon from "@mui/icons-material/Poll";
 import Loader from "../../components/Loader";
 import SideBarWrapper from "./SideBarWrapper";
 import { NavLink } from "react-router-dom";
@@ -29,15 +30,18 @@ function SideBarNav() {
       <Menu className={classes.sidebar__nav}>
         <h2 className={classes.sidebar__title}>Admin</h2>
 
-        {selectedNavItems.map((navItem) => {
+        {selectedNavItems.map(({ name, Icon, id }) => {
           return (
             <NavLink
-              key={navItem.id}
+              key={id}
               className={({ isActive }) => (isActive ? "active" : "")}
-              to={`/${navItem.id}`}
-              onClick={() => handleCategoryClick(navItem.id)}
+              to={`/${id}`}
+              onClick={() => handleCategoryClick(id)}
             >
-              <p className={classes.sidebar__nav_item}>{navItem.name}</p>
+              <div className={classes.sidebar__nav_item}>
+                {!!Icon ? <Icon /> : <PollIcon />}
+                <p>{name}</p>
+              </div>
             </NavLink>
           );
         })}
