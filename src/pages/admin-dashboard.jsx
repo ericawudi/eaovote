@@ -1,5 +1,5 @@
-import AdminComponent from "../admin/index/admin-component";
-import DashboardWrapper from "../components/dashboard-wrapper";
+import AdminComponent from "../feaures/admin/index/admin-component";
+import DashboardWrapper from "../components/DashboardWrapper";
 
 export default function AdminDashboard() {
   return (

@@ -2,12 +2,12 @@ import classes from "./sidebar.module.css";
 import { IconButton, Tooltip } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import { logUserOut } from "../../utils/helper";
+import { removeCookie } from "../../utils/auth";
 
 function SideBarWrapper({ children }) {
   const navigate = useNavigate();
   const handleLogout = () => {
-    logUserOut();
+    removeCookie();
     navigate("/login", {
       replace: true,
     });

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ADMIN_NAVS from "../../admin/index/admin-urls";
+// import ADMIN_NAVS from "../../admin/index/admin-urls";
+import ADMIN_NAVS from "../../feaures/admin/index/admin-urls";
 import {
   fetchAllCompetionsAPIRequest,
   fetchAllCategoriesAPIRequest,

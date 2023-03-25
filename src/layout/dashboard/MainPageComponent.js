@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Notification from "../../components/Notification";
-import Competition from "../../competition/index/competition";
-import AdminComponent from "../../admin/index/admin-component";
+import Competition from "../../feaures/voter/index/competition";
+import AdminComponent from "../../feaures/admin/index/admin-component";
+// import AdminComponent from "../../admin/index/admin-component";
 
 function MainPageComponent() {
   const { isAdmin } = useSelector((state) => state.authSlice);

@@ -5,7 +5,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { Paper } from "@mui/material";
 import Copyright from "../components/Copyright";
-import LoginForm from "../authentication/login";
+import LoginForm from "../components/LoginForm/LoginForm";
 
 function Login() {
   return (
