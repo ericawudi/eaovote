@@ -1,0 +1,8 @@
+.menuContainer {
+    height: 50px;
+    display: "flex";
+    align-items: "center";
+    justify-content: "flex-start";
+    gap: 4;
+    padding-left: "10px";
+}

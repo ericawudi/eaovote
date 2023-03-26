@@ -1,25 +1,16 @@
 import { useState } from "react";
-import SideBarNav from "../layout/sidebar/SideBarNav";
+import SideBarNav from "../../layout/sidebar/SideBarNav";
 import { Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SidebarDrawer from "../layout/sidebar/sidebar-drawer";
-import useScreenWidth from "../hooks/useScreenWidth";
+import SidebarDrawer from "../../layout/sidebar/sidebarDrawer";
+import useScreenWidth from "../../hooks/useScreenWidth";
+import { Constants as K } from "../../utils/constants/main";
+import classes from "./dashboardWrapper.module.css";
 
-const MINIMUM_WIDTH = 1160;
-const styles = {
-  menuContainer: {
-    height: "50px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    gap: 4,
-    paddingLeft: "10px",
-  },
-};
 export default function DashboardWrapper({ children }) {
   const [showDrawer, setShowDrawer] = useState(false);
   const width = useScreenWidth();
-  const showSidebar = width > MINIMUM_WIDTH;
+  const showSidebar = width > K.MINIMUM_WIDTH;
   const gridSmValue = showSidebar ? 10 : 12;
   const toggleSidebar = () => setShowDrawer((prev) => !prev);
 
@@ -34,7 +25,7 @@ export default function DashboardWrapper({ children }) {
             <SideBarNav />
           </Grid>
         ) : (
-          <div style={styles.menuContainer}>
+          <div className={classes.menuContainer}>
             <MenuIcon fontSize="large" onClick={toggleSidebar} /> Admin
           </div>
         )}

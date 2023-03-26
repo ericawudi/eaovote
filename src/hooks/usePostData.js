@@ -1,12 +1,12 @@
 import { useMutation } from "react-query";
-import { APISecuredAxios } from "../utils/auth";
+import { APISecuredAxios } from "../libs/axios/securedAxios";
 
-const logInUser = (data) => {
-  console.log({ data });
-  return APISecuredAxios().post(`/some-url`, data);
+const postUserData = ({ url, data }) => {
+  return APISecuredAxios().post(url, data);
 };
-
-export const usePostData = () => {
-  const result = useMutation("user-login", logInUser);
-  return result;
+export const usePostData = (onSuccess, onError) => {
+  return useMutation(postUserData, {
+    onSuccess: onSuccess,
+    onError: onError,
+  });
 };

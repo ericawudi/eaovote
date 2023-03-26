@@ -2,7 +2,7 @@ import { TextField, MenuItem } from "@mui/material";
 import classes from "./forms.module.css";
 
 function TextInput(props) {
-  const { register, error, name, label } = props;
+  const { register, error, name, label, autoFocus } = props;
   return (
     <TextField
       {...register(name, {
@@ -26,6 +26,7 @@ function TextInput(props) {
       autoComplete="username"
       helperText={error?.message}
       className={classes.form__input}
+      autoFocus={autoFocus}
     />
   );
 }
@@ -39,12 +40,12 @@ function PasswordInput(props) {
           message: "Field is required",
         },
         minLength: {
-          value: 3,
-          message: "Must be more than 3 characters",
+          value: 8,
+          message: "Must be more than 8 characters",
         },
         pattern: {
-          value: /^[a-zA-Z0-9@_-\s]*$/,
-          message: "Unacceptable character(s) found",
+          value: /^(?=.*[a-zA-Z])(?=.*\d)[!@#$%^&*+(){ }?></a-zA-Z\d]{8,}$/,
+          message: "Must be alphanumeric with no unacceptable character(s)",
         },
       })}
       error={!!error}

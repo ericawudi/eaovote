@@ -1,13 +1,22 @@
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { green } from "@mui/material/colors";
-import { CircularProgress, Typography, Radio, Grid, Box } from "@mui/material";
+import {
+  CircularProgress,
+  Typography,
+  Radio,
+  Box,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+} from "@mui/material";
 import Notification from "../Notification";
 import useLoginLogic from "./useLoginLogic";
+import { PasswordInput, TextInput } from "../Form/formsInputs";
 
 export default function LoginForm() {
-  const { state, handlers } = useLoginLogic();
-  const { register, errors, loading, open, notificationMessage } = state;
+  const { state, handlers, fetchResponse } = useLoginLogic();
+  const { register, errors, open, notificationMessage } = state;
+  const { isLoading } = fetchResponse;
   const { handleSubmit, onSubmit, handleClose } = handlers;
 
   return (
@@ -32,76 +41,54 @@ export default function LoginForm() {
         </div>
       ))}
 
-      <TextField
-        {...register("username", {
-          required: {
-            value: true,
-            message: "Field is required",
-          },
-          minLength: {
-            value: 3,
-            message: "Must be more than 3 characters",
-          },
-          pattern: {
-            value: /^[a-zA-Z0-9@_-\s]*$/,
-            message: "Unacceptable character(s) found",
-          },
-        })}
-        error={errors?.username && true}
-        margin="normal"
-        fullWidth
+      <TextInput
+        register={register}
+        name="username"
         label="Username*"
-        autoComplete="username"
+        error={errors?.username}
         autoFocus
       />
-
-      <TextField
-        {...register("password", {
-          required: {
-            value: true,
-            message: "Field is required",
-          },
-          minLength: {
-            value: 3,
-            message: "Must be more than 3 characters",
-          },
-          pattern: {
-            value: /^[a-zA-Z0-9@_-\s]*$/,
-            message: "Unacceptable character(s) found",
-          },
-        })}
-        error={errors?.password && true}
-        margin="normal"
-        fullWidth
-        label="Password*"
-        type="password"
-        autoComplete="current-password"
-      />
-      <Grid container justifyContent="flex-end">
-        <p>I am an admin</p>
-        <Radio
-          {...register("isAdmin", {
-            // required: { value: true, message: "Field is required" },
-          })}
-          error={errors?.isAdmin && true}
-        />
-      </Grid>
+      <PasswordInput register={register} error={errors?.username} />
       <Button
         type="submit"
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        disabled={loading}
+        disabled={isLoading}
       >
         Login
       </Button>
-      {loading && (
+      <FormControl>
+        <RadioGroup
+          row
+          aria-labelledby="row-radio-buttons-group-label"
+          name="row-radio-buttons-group"
+          defaultValue="voter"
+        >
+          <FormControlLabel
+            value="voter"
+            control={<Radio {...register("level")} />}
+            label="Voter"
+          />
+          <FormControlLabel
+            value="admin"
+            control={<Radio {...register("level")} />}
+            label="Admin"
+          />
+          <FormControlLabel
+            value="superadmin"
+            control={<Radio {...register("level")} />}
+            label="Superadmin"
+          />
+        </RadioGroup>
+      </FormControl>
+      {isLoading && (
         <CircularProgress
           size={24}
           sx={{
             color: green[500],
             position: "absolute",
-            top: "54.7%",
+            top: "52.2%",
             left: "49%",
           }}
         />
