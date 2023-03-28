@@ -1,53 +1,79 @@
-import { Menu } from "react-pro-sidebar";
-// import { useFetch } from "../../services/hooks/useFetch";
-import PollIcon from "@mui/icons-material/Poll";
-import Loader from "../../components/Loader";
-import SideBarWrapper from "./SideBarWrapper";
+import { Button } from "@mui/material";
+import { Sidebar, Menu, useProSidebar } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
+import { getLevelCookie } from "../../utils/auth";
 import classes from "./sidebar.module.css";
-import useSidebarLogicHook from "./sidebar-logic-hook";
+import { useSidebarLogic } from "./useSidebarLogic";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
 
 function SideBarNav() {
-  // const result = useFetch("competition");
-  const { selectedNavItems, handleCategoryClick } = useSidebarLogicHook();
-  console.log({ selectedNavItems });
+  const [level] = useState(() => getLevelCookie());
+  const { broken, toggleSidebar } = useProSidebar();
+  const { isLoading, isError, navItems, handleLogout } = useSidebarLogic();
 
-  const result = { isLoading: false, isError: false };
+  function toggle() {
+    toggleSidebar();
+  }
 
-  if (result.isLoading) {
+  if (isLoading) {
     return (
-      <SideBarWrapper>
+      <div className={classes.comp_fetch}>
         <Loader fetching="competitions" />
-      </SideBarWrapper>
+      </div>
     );
   }
-  if (result.isError) {
-    return <SideBarWrapper>{result.error.message}</SideBarWrapper>;
+  if (isError) {
+    return <div className={classes.comp_fetch_error}>Error fetching items</div>;
   }
 
   return (
-    <SideBarWrapper>
-      <Menu className={classes.sidebar__nav}>
-        <h2 className={classes.sidebar__title}>Admin</h2>
-
-        {selectedNavItems.map(({ name, Icon, id }) => {
-          return (
-            <NavLink
-              key={id}
-              className={({ isActive }) => (isActive ? "active" : "")}
-              to={`/${id}`}
-              onClick={() => handleCategoryClick(id)}
-            >
-              <div className={classes.sidebar__nav_item}>
-                {!!Icon ? <Icon /> : <PollIcon />}
-                <p>{name}</p>
-              </div>
-            </NavLink>
-          );
-        })}
-      </Menu>
-    </SideBarWrapper>
+    <div className={classes.container}>
+      <Sidebar
+        breakPoint="sm"
+        collapsedWidth={0}
+        transitionDuration={600}
+        backgroundColor="#b9b9b9"
+      >
+        <div>
+          <h2 className={classes.sidebar__title}>
+            {level?.charAt(0).toUpperCase() + level?.slice(1)}
+          </h2>
+          <Menu className={classes.sidebar__nav}>
+            {navItems?.map(({ name, Icon, id }) => {
+              return (
+                <NavLink
+                  key={id}
+                  className={({ isActive }) =>
+                    isActive
+                      ? classes.sidebar__active_link
+                      : classes.sidebar__link
+                  }
+                  to={`/${level}/${id}`}
+                  // onClick={() => handleCategoryClick(id)}
+                >
+                  <div className={classes.sidebar__nav_item}>
+                    {!!Icon && <Icon />} <span>{name}</span>
+                  </div>
+                </NavLink>
+              );
+            })}
+          </Menu>
+        </div>
+        <Button
+          color="inherit"
+          variant="contained"
+          onClick={handleLogout}
+          style={{ position: "fixed", bottom: "0px", width: "250px" }}
+        >
+          <LogoutIcon />
+          Logout
+        </Button>
+      </Sidebar>
+      {broken && <MenuIcon fontSize="medium" onClick={toggle} />}
+    </div>
   );
 }
-
 export default SideBarNav;

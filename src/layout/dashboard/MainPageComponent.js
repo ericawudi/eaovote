@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import Competition from "../../feaures/voter/index/competition";
 import AdminComponent from "../../feaures/admin/index/adminComponent";
-// import AdminComponent from "../../admin/index/admin-component";
 
 function MainPageComponent() {
   const { isAdmin } = useSelector((state) => state.authSlice);

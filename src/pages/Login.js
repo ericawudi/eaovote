@@ -10,15 +10,7 @@ import LoginForm from "../components/LoginForm/LoginForm";
 function Login() {
   return (
     <div className="login">
-      <Container
-        component="main"
-        maxWidth="xs"
-        style={{
-          display: "flex",
-          alignSelf: "center",
-          alignItems: "center",
-        }}
-      >
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Paper>
           <Box

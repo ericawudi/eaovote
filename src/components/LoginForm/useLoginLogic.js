@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
-// import { loginUser } from "../../services/loginLogout";
 import { usePostData } from "../../hooks/usePostData";
-import { setAuthCookie, setLevelCookie } from "../../utils/auth";
+import {
+  getLevelCookie,
+  setAuthCookie,
+  setLevelCookie,
+} from "../../utils/auth";
 
 export default function useLoginLogic() {
   const [open, setOpen] = useState(false);
-  const [url, setUrl] = useState("voter");
   const [notificationMessage, setNotificationMessage] = useState("");
   const queryClient = useQueryClient();
 
@@ -22,12 +24,11 @@ export default function useLoginLogic() {
   const onSuccessFulCall = (data) => {
     // This caches it but redux will be best 'cos i'm unable to set stale and cache time.
     queryClient.setQueryData("login", data, {
-      cacheTime: 1000,
-      staleTime: 1000,
+      // cacheTime: 1000,
+      // staleTime: 1000,
     });
-    setAuthCookie(data?.data?.authToken?.accessToken);
-    console.log(data);
-    setLevelCookie(url);
+    setAuthCookie(`Bearer ${data?.data?.data?.authToken?.accessToken}`);
+    const url = getLevelCookie();
     navigate(`/${url}`);
   };
 
@@ -37,7 +38,7 @@ export default function useLoginLogic() {
   );
   const onSubmit = (values, _event) => {
     const loginData = { username: values.username, password: values.password };
-    setUrl(values.level);
+    setLevelCookie(values.level);
     mutate({ url: `login/${values.level}`, data: loginData });
   };
 

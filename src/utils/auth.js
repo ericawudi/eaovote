@@ -22,4 +22,5 @@ export const setLevelCookie = (level) => {
 //remove cookie
 export function removeCookie() {
   cookies.remove(K.Cookies.API_TOKEN_KEY);
+  cookies.remove(K.Cookies.PRIVILEGE);
 }
