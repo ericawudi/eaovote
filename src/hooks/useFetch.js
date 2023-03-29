@@ -3,7 +3,8 @@ import { APISecuredAxios } from "../libs/axios/securedAxios";
 
 const fetchData = ({ queryKey }) => {
   if (Array.isArray(queryKey) && queryKey.length > 1) {
-    return APISecuredAxios().get(`/${queryKey[0]}/${queryKey[1]}`);
+    const url = queryKey.join("/");
+    return APISecuredAxios().get(`/${url}`);
   }
   return APISecuredAxios().get(`/${queryKey[0]}`);
 };

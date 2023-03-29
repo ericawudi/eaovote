@@ -8,7 +8,9 @@ function PrivateRoutes() {
   return (
     <div className={classes.container}>
       <SideBarNav />
-      <Outlet />
+      <div className={classes.outlet}>
+        <Outlet />
+      </div>
     </div>
   );
 }

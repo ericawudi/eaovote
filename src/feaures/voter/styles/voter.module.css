@@ -1,4 +1,6 @@
 .competition__main {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
 }
 
@@ -21,6 +23,14 @@
   background: green !important;
   text-transform: none !important;
 }
+
 .submit_votes_btn:hover {
   background: black !important;
+}
+
+.comp_fetch {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
 }

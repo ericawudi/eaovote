@@ -1,5 +1,5 @@
 import { Paper, Button } from "@mui/material";
-import classes from "../styles/competition.module.css";
+import classes from "../styles/voter.module.css";
 import useCompetitionHeaderLogicHook from "../logic-hooks/competition";
 
 export default function CompetitionHeader() {

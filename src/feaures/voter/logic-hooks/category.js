@@ -1,12 +1,24 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../../hooks/useFetch";
 
 export default function useCategoryLogicHook() {
-  const { categories } = useSelector((state) => state.competitionSlice);
   const [openedCategories, setOpenedCategories] = useState([]);
 
-  // const params = useParams();
+  const { competitionId } = useParams();
+
+  const { isLoading, isError, data, error, refetch } = useFetch([
+    "category",
+    "competition",
+    competitionId,
+  ]);
+
+  useEffect(() => {
+    if (competitionId) {
+      refetch();
+    }
+  }, [competitionId, refetch]);
+
   const showParticipants = (id) => setOpenedCategories((prev) => [...prev, id]);
   const hideParticipants = (id) =>
     setOpenedCategories((prev) => prev.filter((catId) => catId !== id));
@@ -18,5 +30,12 @@ export default function useCategoryLogicHook() {
     return listOpened ? hideParticipants(id) : showParticipants(id);
   };
 
-  return { categories, toggleShowParticipants, isOpened };
+  return {
+    categories: data?.data,
+    toggleShowParticipants,
+    isOpened,
+    isLoading,
+    isError,
+    error,
+  };
 }
