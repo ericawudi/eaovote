@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { Provider } from "react-redux";
+import store from "./libs/redux/store";
 
 const queryClient = new QueryClient();
 
@@ -14,12 +16,14 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ProSidebarProvider>
-          <App />
-        </ProSidebarProvider>
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      <Provider store={store}>
+        <BrowserRouter>
+          <ProSidebarProvider>
+            <App />
+          </ProSidebarProvider>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );

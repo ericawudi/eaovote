@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    height: 100dvh;
+}
+
+.outlet {
+    overflow-x: scroll;
+    width: 100%;
+}
