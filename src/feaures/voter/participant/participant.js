@@ -5,25 +5,38 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import useParticipantLogicHook from "../logic-hooks/participant";
 
-export default function Participant(props) {
-  const { isSelected, onSelect } = props;
-  const elevationValue = isSelected ? 10 : 1;
+export default function Participant({
+  participant,
+  onSelect,
+  alreadyVoted,
+  isSelected,
+}) {
+  const { voted, handleSelectedVote } = useParticipantLogicHook(
+    alreadyVoted,
+    participant,
+    isSelected,
+    onSelect
+  );
 
   return (
-    <Card elevation={elevationValue} sx={{ maxWidth: 300 }}>
+    <Card
+      elevation={voted ? 10 : 1}
+      sx={{ maxWidth: 300 }}
+      style={alreadyVoted ? { opacity: 0.5 } : {}}
+    >
       <CardMedia
         sx={{ height: 120 }}
         image="https://cc-prod.scene7.com/is/image/CCProdAuthor/how_to_cut_out_images_photoshop_P1_mobile_360x270"
-        title="green iguana"
+        title={participant.fullname}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {participant.fullname}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {participant.description}
         </Typography>
       </CardContent>
       <CardActions
@@ -34,10 +47,10 @@ export default function Participant(props) {
           float: "right",
           cursor: "pointer",
         }}
-        onClick={onSelect}
+        onClick={() => handleSelectedVote(participant)}
       >
         <p>Vote</p>
-        {isSelected ? (
+        {voted ? (
           <ThumbUpAltIcon fontSize="large" />
         ) : (
           <ThumbUpOffAltIcon fontSize="large" />

@@ -11,22 +11,6 @@ import Competitions from "./feaures/admin/competitons/containers/competitions";
 import Categories from "./feaures/admin/categories/containers/categories";
 import Reports from "./feaures/admin/reports/containers/reports";
 
-// import Admins from "../admins/containers/admins";
-// import Voters from "../voters/containers/voters";
-// import Participants from "../participants/containers/participants";
-// import Competitions from "../competitons/containers/competitions";
-// import Categories from "../categories/containers/categories";
-// import Reports from "../reports/containers/reports";
-
-// const components = [
-//   { title: "Admins", url: "/admin-list", Component: Admins },
-//   { title: "Voters", url: "/voters", Component: Voters },
-//   { title: "Participants", url: "/participants", Component: Participants },
-//   { title: "Competitions", url: "/competitions", Component: Competitions },
-//   { title: "Categories", url: "/categories", Component: Categories },
-//   { title: "Reports", url: "/reports", Component: Reports },
-// ];
-
 function App() {
   return (
     <Routes>

@@ -1,27 +1,39 @@
 import Category from "./category";
-import useCategoryLogicHook from "../logic-hooks/category";
+import useCategoriesLogicHook from "../logic-hooks/categories";
 import classes from "../styles/voter.module.css";
 import Loader from "../../../components/Loader/Loader";
+import Error from "../../../components/Error/Error";
 
 export default function Categories() {
-  const { categories, isLoading, isError, isOpened, toggleShowParticipants } =
-    useCategoryLogicHook();
+  const {
+    categories,
+    isLoading,
+    isError,
+    error,
+    isOpened,
+    toggleShowParticipants,
+  } = useCategoriesLogicHook();
+
   if (isLoading) {
     return (
       <div className={classes.comp_fetch}>
-        <Loader fetching="competitions" />
+        <Loader fetching="categories" />
       </div>
     );
   }
   if (isError) {
-    return <div>Error fetching categories</div>;
+    return <Error message={error?.message} />;
   }
-  return categories?.data?.map((cat, idx) => (
-    <Category
-      key={`${cat.id}_${idx}`}
-      category={cat}
-      showParticipants={isOpened(`${cat.id}_${idx}`)}
-      toggleOpen={() => toggleShowParticipants(`${cat.id}_${idx}`)}
-    />
-  ));
+  return (
+    <>
+      {categories?.data?.map((cat, idx) => (
+        <Category
+          key={`${cat.id}_${idx}`}
+          category={cat}
+          showParticipants={isOpened(`${cat.id}_${idx}`)}
+          toggleOpen={() => toggleShowParticipants(`${cat.id}_${idx}`)}
+        />
+      ))}
+    </>
+  );
 }

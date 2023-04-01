@@ -1,32 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { castNewVote, cancelVote } from "../../../libs/redux/actions/votes";
-// import { castNewVote, cancelVote } from "../../libs/redux/actions/votes";
 
-export default function useParticipantsLogicHook(categoryId) {
-  const dispatch = useDispatch();
-  const { id: voterId } = useSelector((state) => state.authSlice);
-  const { participants } = useSelector((state) => state.votesSlice);
-  const { currentCompetitionId } = useSelector(
-    (state) => state.competitionSlice
+export default function useParticipantsLogicHook(participants = []) {
+  const [selectedParticipantId, setSelectedParticipantId] = useState();
+
+  const alreadyVoted = Boolean(
+    participants.find((participant) => participant.voted === 1)
   );
-  const [selectedParticipantId, setSelectedParticipantId] = useState(null);
 
-  const castVote = (data) => dispatch(castNewVote(data));
-  const undoVote = (id) => dispatch(cancelVote(id));
-
-  const onVoteClick = (id) => {
-    const alreadyVoted = selectedParticipantId === id;
-    setSelectedParticipantId(alreadyVoted ? null : id);
-    return alreadyVoted
-      ? undoVote(categoryId)
-      : castVote({
-          categoryId,
-          voterId,
-          participantId: id,
-          competitionId: currentCompetitionId,
-        });
+  //This function can keep track of all selected votes.
+  //We can have an array of category and selected participants
+  //[1=>{},] {catId:{},}. Either pass a handler from categories
+  // or use context to acheive this
+  // let votes = {};
+  // let votesArr = [];
+  const handleVote = (participant) => {
+    console.log({ chosenPar: participant });
+    // votes[participant.category_id] = participant;
+    // votesArr.push(participant);
+    // console.log({ votesSoFarSelected: votes });
+    // console.log({ votesSoFarSelectedArr: votesArr });
+    setSelectedParticipantId(participant.id);
   };
 
-  return { participants, selectedParticipantId, onVoteClick };
+  return {
+    alreadyVoted,
+    handleVote,
+    selectedParticipantId,
+  };
 }

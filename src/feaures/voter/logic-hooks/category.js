@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { useFetch } from "../../../hooks/useFetch";
 
-export default function useCategoryLogicHook() {
-  const [openedCategories, setOpenedCategories] = useState([]);
-
-  const { competitionId } = useParams();
-
+export default function useCategoryLogicHook(categoryId) {
   const { isLoading, isError, data, error, refetch } = useFetch([
+    "participants",
     "category",
-    "competition",
-    competitionId,
+    categoryId,
   ]);
 
   useEffect(() => {
-    if (competitionId) {
+    if (categoryId) {
       refetch();
     }
-  }, [competitionId, refetch]);
-
-  const showParticipants = (id) => setOpenedCategories((prev) => [...prev, id]);
-  const hideParticipants = (id) =>
-    setOpenedCategories((prev) => prev.filter((catId) => catId !== id));
-
-  const isOpened = (id) => openedCategories.includes(id);
-
-  const toggleShowParticipants = (id) => {
-    const listOpened = isOpened(id);
-    return listOpened ? hideParticipants(id) : showParticipants(id);
-  };
+  }, [categoryId, refetch]);
 
   return {
-    categories: data?.data,
-    toggleShowParticipants,
-    isOpened,
+    participants: data?.data,
     isLoading,
     isError,
     error,

@@ -8,9 +8,16 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Grid, Paper } from "@mui/material";
 import Participants from "../participant/participants";
+import useCategoryLogicHook from "../logic-hooks/category";
+import Loader from "../../../components/Loader/Loader";
+import Error from "../../../components/Error/Error";
+import classes from "../styles/voter.module.css";
 
 export default function Category(props) {
   const { category, showParticipants, toggleOpen } = props;
+  const { participants, isLoading, isError, error } = useCategoryLogicHook(
+    category?.id
+  );
 
   return (
     <div>
@@ -34,7 +41,7 @@ export default function Category(props) {
             {showParticipants ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
         </Paper>
-        <Collapse in={showParticipants} timeout="auto" unmountOnExit>
+        <Collapse in={showParticipants} timeout="auto" /* unmountOnExit */>
           <Grid
             container
             alignItems="center"
@@ -42,7 +49,15 @@ export default function Category(props) {
             justifyContent="center"
             sx={{ padding: "20px", width: "100%" }}
           >
-            <Participants categoryId={category.id} />
+            {isLoading ? (
+              <div className={classes.comp_fetch}>
+                <Loader fetching="participants" />
+              </div>
+            ) : isError ? (
+              <Error message={error?.message} />
+            ) : (
+              participants && <Participants participants={participants?.data} />
+            )}
           </Grid>
         </Collapse>
       </List>
