@@ -3,7 +3,7 @@ import {
   TextInput,
   PasswordInput,
   NumberInput,
-} from "../../../../components/Form/formsInputs";
+} from "../../../../components/Form/FormsInputs";
 import useCreateVoterLogicHook from "../logic-hooks/create-voter";
 
 export default function CreateVoter() {

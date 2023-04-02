@@ -1,7 +1,7 @@
 import { TextField, MenuItem } from "@mui/material";
 import classes from "./forms.module.css";
 
-function TextInput(props) {
+export function TextInput(props) {
   const { register, error, name, label, autoFocus } = props;
   return (
     <TextField
@@ -30,7 +30,8 @@ function TextInput(props) {
     />
   );
 }
-function PasswordInput(props) {
+
+export function PasswordInput(props) {
   const { register, error } = props;
   return (
     <TextField
@@ -60,7 +61,7 @@ function PasswordInput(props) {
   );
 }
 
-function NumberInput(props) {
+export function NumberInput(props) {
   const { register, error, name, label } = props;
   return (
     <TextField
@@ -90,7 +91,7 @@ function NumberInput(props) {
   );
 }
 
-function SelectInput(props) {
+export function SelectInput(props) {
   const { register, error, name, label, options } = props;
   return (
     <TextField
@@ -127,7 +128,7 @@ function SelectInput(props) {
   );
 }
 
-function TextAreaInput(props) {
+export function TextAreaInput(props) {
   const { register, error, name, label } = props;
   return (
     <TextField
@@ -157,4 +158,3 @@ function TextAreaInput(props) {
     />
   );
 }
-export { TextInput, PasswordInput, NumberInput, SelectInput, TextAreaInput };

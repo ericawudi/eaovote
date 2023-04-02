@@ -5,7 +5,7 @@ import {
   PasswordInput,
   NumberInput,
   SelectInput,
-} from "../../../../components/Form/formsInputs";
+} from "../../../../components/Form/FormsInputs";
 import useCreateAdminLogicHook from "../logic-hooks/create-admin";
 
 export default function CreateCompetition() {

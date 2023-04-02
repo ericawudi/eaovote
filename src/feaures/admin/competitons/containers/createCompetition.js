@@ -3,7 +3,7 @@ import {
   TextInput,
   TextAreaInput,
   SelectInput,
-} from "../../../../components/Form/formsInputs";
+} from "../../../../components/Form/FormsInputs";
 import useCreateCompetitionLogicHook from "../logic-hooks/createCompetition";
 
 export default function CreateAdmin() {

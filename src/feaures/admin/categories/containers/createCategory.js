@@ -3,7 +3,7 @@ import {
   TextInput,
   TextAreaInput,
   SelectInput,
-} from "../../../../components/Form/formsInputs";
+} from "../../../../components/Form/FormsInputs";
 import useCreateCategoryLogicHook from "../logic-hooks/create-category";
 
 export default function CreateCategory() {

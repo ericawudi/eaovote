@@ -3,7 +3,7 @@ import {
   TextInput,
   TextAreaInput,
   SelectInput,
-} from "../../../../components/Form/formsInputs";
+} from "../../../../components/Form/FormsInputs";
 import useCreateParticipantLogicHook from "../logic-hooks/createParticipant";
 
 export default function CreateParticipant() {
