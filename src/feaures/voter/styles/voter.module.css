@@ -22,13 +22,17 @@
 .submit_votes_btn {
   height: 50px;
   min-width: 130px !important;
-  color: white !important;
   background: green !important;
   text-transform: none !important;
 }
 
+.submit_votes_btn:disabled {
+  background-color: #eaeaea !important;
+  color: #c0c0c0 !important
+}
+
 .submit_votes_btn:hover {
-  background: black !important;
+  background: black !important
 }
 
 .comp_fetch {
