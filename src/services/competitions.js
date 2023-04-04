@@ -1,4 +1,4 @@
-import { makeGetRequest } from "../../libs/axios";
+import { makeGetRequest } from "../libs/axios";
 
 const GET_COMPETIONS_URL = "/competition";
 const GET_CATEGORIES_URL = "/category/";

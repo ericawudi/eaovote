@@ -10,11 +10,11 @@ const setAuthCookie = (authToken) => {
   cookies.set(K.App.API_TOKEN, authToken, { path: "/" });
 };
 
-const loginUser = (data) => {
-  console.log({ LOGIN: data });
-  const { isAdmin, username, password } = data;
+const loginUser = (values) => {
+  const { isAdmin, username, password } = values;
   const endpoint = isAdmin ? adminLoginUrl : voterLoginUrl;
-  return makePostRequest(endpoint)({ username, password });
+  const data = { username, password };
+  return makePostRequest(endpoint, { data, authToken: "" });
 };
 
 // Log out

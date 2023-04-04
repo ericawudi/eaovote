@@ -4,7 +4,7 @@ import ADMIN_NAVS from "../../admin/index/admin-urls";
 import {
   fetchAllCompetionsAPIRequest,
   fetchAllCategoriesAPIRequest,
-} from "../../services/user/competitions";
+} from "../../services/competitions";
 import {
   setCurrentCompetition,
   setCompetitons,

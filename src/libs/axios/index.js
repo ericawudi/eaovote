@@ -10,17 +10,20 @@ function makeGetRequest(url) {
       const { data } = await APISecuredAxios().get(endpoint, {
         headers: { Authorization: authToken },
       });
-      return { err: false, data };
+      return data;
     } catch (err) {
       return { err: true, message: err.message };
     }
   };
 }
-function makePostRequest(url) {
-  return async (data) => {
+function makePostRequest(url, payload) {
+  return async () => {
     try {
+      const { authToken, data } = payload;
       const endpoint = BASE_URL + url;
-      const response = await APISecuredAxios().post(endpoint, data);
+      const response = await APISecuredAxios().post(endpoint, data, {
+        headers: { Authorization: authToken },
+      });
       return { err: false, data: response.data };
     } catch (err) {
       return { err: true, data: err.response.data };
