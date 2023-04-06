@@ -52,7 +52,7 @@ function SideBarNav() {
                       : classes.sidebar__link
                   }
                   to={`/${level}/${id}`}
-                  // onClick={() => handleCategoryClick(id)}
+                  state={name}
                 >
                   <div className={classes.sidebar__nav_item}>
                     {!!Icon && <Icon />} <span>{name}</span>

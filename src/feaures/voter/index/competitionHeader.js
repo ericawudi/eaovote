@@ -3,14 +3,16 @@ import classes from "../styles/voter.module.css";
 import useCompetitionHeaderLogicHook from "../logic-hooks/competition";
 import Notification from "../../../components/Notification";
 import { green } from "@mui/material/colors";
+import { useLocation } from "react-router-dom";
 
 export default function CompetitionHeader() {
   const { submitVotes, isLoading, notificationMessage, open, handleClose } =
     useCompetitionHeaderLogicHook();
+  const { state } = useLocation();
   return (
     <>
       <Paper className={classes.competition__header}>
-        <p className={classes.competition__title}>Competion name</p>
+        <p className={classes.competition__title}>{state}</p>
         <Button
           variant="contained"
           className={classes.submit_votes_btn}

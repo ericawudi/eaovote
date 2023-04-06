@@ -9,10 +9,10 @@ const fetchData = ({ queryKey }) => {
   return APISecuredAxios().get(`/${queryKey[0]}`);
 };
 
-export const useFetch = (key) => {
+export const useFetch = (key, enabled = false) => {
   return useQuery(key, fetchData, {
     refetchOnWindowFocus: false,
-    enabled: false,
+    enabled: enabled,
     cacheTime: 30000,
     staleTime: 30000,
   });

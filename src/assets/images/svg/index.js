@@ -12,6 +12,7 @@ import strechArm from "./strech-arm.svg";
 import upset from "./upset.svg";
 import weightLift from "./weight-lift.svg";
 import lotus from "./lotus.svg";
+import placeholder from "./placeholder.svg";
 
 export const SVGs = [
   bridgeExtend,
@@ -29,3 +30,5 @@ export const SVGs = [
   weightLift,
   lotus,
 ];
+
+export { placeholder };

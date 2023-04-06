@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import useParticipantLogicHook from "../logic-hooks/participant";
+import loginBckImg from "../../../assets/images/loginBckImg.jpg";
 
 export default function Participant({
   participant,
@@ -19,7 +20,6 @@ export default function Participant({
     isSelected,
     onSelect
   );
-
   return (
     <Card
       elevation={voted ? 10 : 1}
@@ -27,10 +27,11 @@ export default function Participant({
       style={alreadyVoted ? { opacity: 0.5 } : {}}
     >
       <CardMedia
-        sx={{ height: 120 }}
-        image="https://cc-prod.scene7.com/is/image/CCProdAuthor/how_to_cut_out_images_photoshop_P1_mobile_360x270"
+        sx={{ height: 150 }}
+        image={participant.profile_picture || loginBckImg}
         title={participant.fullname}
       />
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {participant.fullname}
