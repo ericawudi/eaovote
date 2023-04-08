@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { getLevelCookie } from "../utils/auth";
 
 function NotFound() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/");
+    const level = getLevelCookie();
+    navigate(`${level}`);
   }
   return (
     <div id="error-page">

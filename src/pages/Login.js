@@ -5,20 +5,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { Paper } from "@mui/material";
 import Copyright from "../components/Copyright";
-import LoginForm from "../authentication/login";
+import LoginForm from "../components/LoginForm/LoginForm";
 
 function Login() {
   return (
     <div className="login">
-      <Container
-        component="main"
-        maxWidth="xs"
-        style={{
-          display: "flex",
-          alignSelf: "center",
-          alignItems: "center",
-        }}
-      >
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Paper>
           <Box

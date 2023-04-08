@@ -1,27 +1,26 @@
-//set-up axios
-
-import axios from "axios";
 import Cookies from "universal-cookie";
-import { Constants as K } from "./constants";
+import { Constants as K } from "./constants/main";
 
 const cookies = new Cookies();
 
-export function APISecuredAxios() {
-  const APIAxios = axios.create({
-    baseURL: K.App.BASE_API_URL,
-  });
-  APIAxios.defaults.headers.post["Content-Type"] = "application/json";
-  APIAxios.defaults.headers.common["Authorization"] = cookies.get(
-    K.App.API_TOKEN
-  );
-  return APIAxios;
-}
-
 // Check if logged in
-export function isAuthenticated() {
-  if (cookies.get(K.App.API_TOKEN)) {
-    return true;
-  } else {
-    return true;
-  }
+export const isAuthenticated = () =>
+  Boolean(cookies.get(K.Cookies.API_TOKEN_KEY));
+
+// Set cookie
+export const setAuthCookie = (authToken) => {
+  cookies.set(K.Cookies.API_TOKEN_KEY, authToken, { path: "/" });
+};
+
+// Get level
+export const getLevelCookie = () => cookies.get(K.Cookies.PRIVILEGE);
+
+// Set level Cookie
+export const setLevelCookie = (level) => {
+  cookies.set(K.Cookies.PRIVILEGE, level, { path: "/" });
+};
+//remove cookie
+export function removeCookie() {
+  cookies.remove(K.Cookies.API_TOKEN_KEY);
+  cookies.remove(K.Cookies.PRIVILEGE);
 }

@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    height: 30%;
+    width: 30%;
+}
+
+.errorMsg {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(254, 54, 54);
+}
+
+.enjoy {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(142, 36, 36);
+}

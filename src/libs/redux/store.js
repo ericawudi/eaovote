@@ -4,7 +4,7 @@ import rootReducer from "./reducers/root";
 import {
   loadStateFromLocalStorage,
   saveStateToLocalStorage,
-} from "./local-storage";
+} from "./localStorage";
 
 //functions to persist state in local storage
 
