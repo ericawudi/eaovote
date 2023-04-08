@@ -5,6 +5,7 @@ import classes from "./PrivateRoutes.module.css";
 
 function PrivateRoutes() {
   if (!isAuthenticated()) return <Navigate to={"/login"} replace />;
+
   return (
     <div className={classes.container}>
       <SideBarNav />

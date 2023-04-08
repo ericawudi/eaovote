@@ -3,15 +3,48 @@ import useModalViews from "../../hooks/use-modal-views";
 
 const TITLE = "Voters";
 const columns = ["Voter", "Fullname", "email", "Contact", "Actions"];
-const voters = [
-  ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],
-  ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],
-  ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],
-  ["jamesjoe", "Joe James", "admin@gmail.com", "23354698776"],
+const DUMMY_VOTERS = [
+  {
+    id: "voter001",
+    fullname: "Joe James",
+    username: "jamesjoe",
+    email: "admin@gmail.com",
+    msisdn: "23354698776",
+  },
+  {
+    id: "voter001",
+    fullname: "Joe James",
+    username: "jamesjoe",
+    email: "admin@gmail.com",
+    msisdn: "23354698776",
+  },
+  {
+    id: "voter001",
+    fullname: "Joe James",
+    username: "jamesjoe",
+    email: "admin@gmail.com",
+    msisdn: "23354698776",
+  },
+  {
+    id: "voter001",
+    fullname: "Joe James",
+    username: "jamesjoe",
+    email: "admin@gmail.com",
+    msisdn: "23354698776",
+  },
+  {
+    id: "voter001",
+    fullname: "Joe James",
+    username: "jamesjoe",
+    email: "admin@gmail.com",
+    msisdn: "23354698776",
+  },
 ];
 
 export default function useVotersLogicHook() {
-  const [selectedAdminId, setSelectedAdminId] = useState("");
+  const [selectedVoterId, setSelectedVoterId] = useState("");
+  const selectedVoter = DUMMY_VOTERS.find(({ id }) => id === selectedVoterId);
+
   const {
     ACTIONS,
     showModal,
@@ -22,12 +55,11 @@ export default function useVotersLogicHook() {
     openModal,
     closeActionModal,
   } = useModalViews();
-  console.log(selectedAdminId);
 
-  const showActionModal = openModal(setSelectedAdminId);
+  const showActionModal = openModal(setSelectedVoterId);
 
   return {
-    state: { TITLE, columns, voters },
+    state: { TITLE, columns, voters: DUMMY_VOTERS, selectedVoter },
     modal: {
       ACTIONS,
       showModal,

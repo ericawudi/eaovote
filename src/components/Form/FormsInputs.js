@@ -2,7 +2,7 @@ import { TextField, MenuItem } from "@mui/material";
 import classes from "./forms.module.css";
 
 export function TextInput(props) {
-  const { register, error, name, label, autoFocus } = props;
+  const { register, error, name, label, autoFocus, disabled = false } = props;
   return (
     <TextField
       {...register(name, {
@@ -27,6 +27,7 @@ export function TextInput(props) {
       helperText={error?.message}
       className={classes.form__input}
       autoFocus={autoFocus}
+      disabled={disabled}
     />
   );
 }

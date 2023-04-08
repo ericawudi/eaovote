@@ -15,7 +15,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-
+      {/* PRIVATE ROUTES */}
       <Route element={<PrivateRoutes />}>
         <Route path="/voter">
           <Route index element={<VoterDashboard />} />
