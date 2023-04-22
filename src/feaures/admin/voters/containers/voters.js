@@ -4,19 +4,24 @@ import DataTable from "../../components/muiDataTable";
 import ActionButtons from "../../components/actionButtons";
 import CreateVoter from "./createVoter";
 import EditVoter from "./editVoter";
-import useVotersLogicHook from "../logic-hooks/voters";
+import DeleteVoter from "./deleteVoter";
+import ViewVoter from "./viewVoter";
+import VotersContextProvider, {
+  useVotersContext,
+} from "../context/voterProvider";
 
-export default function Voters() {
-  const { state, modal, handlers } = useVotersLogicHook();
-  const { voters, selectedVoter, columns, TITLE } = state;
+function VotersComponent() {
+  const { votersState } = useVotersContext();
+  const { state, modal, handlers } = votersState;
+  const { voters, columns, TITLE } = state;
   const { showActionModal, closeActionModal } = handlers;
   const {
     ACTIONS,
     showModal,
     showCreateContent,
     showEditContent,
-    // showDeleteContent,
-    // showViewContent,
+    showDeleteContent,
+    showViewContent,
   } = modal;
 
   const data = voters.map((voter) => {
@@ -42,11 +47,19 @@ export default function Voters() {
     >
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
+        {showViewContent && <ViewVoter />}
         {showCreateContent && <CreateVoter />}
-        {showEditContent && <EditVoter voter={selectedVoter} />}
-        {/*{showDeleteContent && <DeleteCompetition />}
-        {showViewContent && <ViewCompetition />} */}
+        {showEditContent && <EditVoter />}
+        {showDeleteContent && <DeleteVoter />}
       </CustomModal>
     </PageTemplateLayout>
+  );
+}
+
+export default function Voters() {
+  return (
+    <VotersContextProvider>
+      <VotersComponent />
+    </VotersContextProvider>
   );
 }

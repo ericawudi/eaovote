@@ -1,5 +1,3 @@
-import { useForm } from "react-hook-form";
-
 const DEFAULT_VALUES = {
   fullname: "",
   username: "",
@@ -12,20 +10,22 @@ export const VOTER_ACTIONS = {
   create: "Create New Voter",
   edit: "Edit Voter",
 };
-export default function useCreateAndEditVoterHook(action, voter) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: voter ?? DEFAULT_VALUES });
 
-  const allowUsernameEdit = action === VOTER_ACTIONS.create;
+export default function useCreateAndEditVoterLogic(data) {
+  const { showCreateContent, closeActionModal, voter } = data;
+  const defaultValues = voter ?? DEFAULT_VALUES;
 
-  const onSubmit = (values) => console.log({ action, values });
+  const onSubmit = (values) => {
+    console.log({ action: null, values });
+    return closeActionModal();
+  };
 
   return {
-    template: { title: action, allowUsernameEdit },
-    state: { register, errors, isLoading: false },
-    handlers: { handleSubmit, onSubmit },
+    state: {
+      defaultValues,
+      isLoading: false,
+      allowUsernameEdit: showCreateContent,
+    },
+    handlers: { onSubmit },
   };
 }

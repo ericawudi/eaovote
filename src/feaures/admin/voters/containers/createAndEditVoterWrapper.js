@@ -1,21 +1,28 @@
+import { useForm } from "react-hook-form";
 import FormContainer from "../../../../components/Form/FormContainer";
 import {
   TextInput,
   PasswordInput,
   NumberInput,
 } from "../../../../components/Form/FormsInputs";
-import useCreateAndEditVoterHook from "../logic-hooks/createAndEditVoter";
+import { useVotersContext } from "../context/voterProvider";
 
-export default function CreateAndEditVoterTemplate({ action, voter = null }) {
+export default function CreateAndEditVoterTemplate({ action }) {
+  const { createAndEditVoterState } = useVotersContext();
   const {
-    template: { title, allowUsernameEdit },
-    state: { register, errors, isLoading },
-    handlers: { handleSubmit, onSubmit },
-  } = useCreateAndEditVoterHook(action, voter);
+    state: { allowUsernameEdit, isLoading, defaultValues },
+    handlers: { onSubmit },
+  } = createAndEditVoterState;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ defaultValues });
 
   return (
     <div>
-      <h3 style={{ textAlign: "center", margin: "10px" }}>{title}</h3>
+      <h3 style={{ textAlign: "center", margin: "10px" }}>{action}</h3>
       <FormContainer
         loading={isLoading}
         handleSubmit={handleSubmit}

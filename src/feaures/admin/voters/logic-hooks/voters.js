@@ -41,7 +41,7 @@ const DUMMY_VOTERS = [
   },
 ];
 
-export default function useVotersLogicHook() {
+export default function useVotersLogic() {
   const [selectedVoterId, setSelectedVoterId] = useState("");
   const selectedVoter = DUMMY_VOTERS.find(({ id }) => id === selectedVoterId);
 
