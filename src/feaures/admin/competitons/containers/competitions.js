@@ -3,17 +3,21 @@ import PageTemplateLayout from "../../components/pageLayoutTemplate";
 import DataTable from "../../components/muiDataTable";
 import ActionButtons from "../../components/actionButtons";
 import CreateCompetition from "./createCompetition";
-import useCompetitionLogicHook from "../logic-hooks/competition";
+import EditCompetition from "./editCompetition";
+import CompetitionsContextProvider, {
+  useCompetitionsContext,
+} from "../context/competionProvider";
 
-export default function Competitions() {
-  const { state, modal, handlers } = useCompetitionLogicHook();
+function CompetitionsComponent() {
+  const { competitionsState } = useCompetitionsContext();
+  const { state, handlers, modal } = competitionsState;
   const { competitions, columns, TITLE } = state;
   const { showActionModal, closeActionModal } = handlers;
   const {
     ACTIONS,
     showModal,
     showCreateContent,
-    // showEditContent,
+    showEditContent,
     // showDeleteContent,
     // showViewContent,
   } = modal;
@@ -36,10 +40,18 @@ export default function Competitions() {
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
         {showCreateContent && <CreateCompetition />}
-        {/* {showEditContent && <EditCompetition />}
-        {showDeleteContent && <DeleteCompetition />}
+        {showEditContent && <EditCompetition />}
+        {/* {showDeleteContent && <DeleteCompetition />}
         {showViewContent && <ViewCompetition />} */}
       </CustomModal>
     </PageTemplateLayout>
+  );
+}
+
+export default function Competitons() {
+  return (
+    <CompetitionsContextProvider>
+      <CompetitionsComponent />
+    </CompetitionsContextProvider>
   );
 }

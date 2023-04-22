@@ -10,7 +10,7 @@ const competitions = [
   ["jamesjoe", "Joe James"],
 ];
 
-export default function useCompetitionLogicHook() {
+export default function useCompetitionsLogic() {
   const [selectedAdminId, setSelectedAdminId] = useState("");
   const {
     ACTIONS,
