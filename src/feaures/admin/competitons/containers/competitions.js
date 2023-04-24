@@ -4,6 +4,8 @@ import DataTable from "../../components/muiDataTable";
 import ActionButtons from "../../components/actionButtons";
 import CreateCompetition from "./createCompetition";
 import EditCompetition from "./editCompetition";
+import DeleteCompetition from "./deleteCompetition";
+import ViewCompetition from "./viewCompetition";
 import CompetitionsContextProvider, {
   useCompetitionsContext,
 } from "../context/competionProvider";
@@ -18,16 +20,17 @@ function CompetitionsComponent() {
     showModal,
     showCreateContent,
     showEditContent,
-    // showDeleteContent,
-    // showViewContent,
+    showDeleteContent,
+    showViewContent,
   } = modal;
 
-  const data = competitions.map((row, idx) => [
-    ...row,
+  const data = competitions.map(({ id, name, admin }) => [
+    name,
+    admin,
     <ActionButtons
-      onEdit={() => showActionModal(ACTIONS.editActor, idx)}
-      onView={() => showActionModal(ACTIONS.viewActor, idx)}
-      onDelete={() => showActionModal(ACTIONS.deleteActor, idx)}
+      onEdit={() => showActionModal(ACTIONS.editActor, id)}
+      onView={() => showActionModal(ACTIONS.viewActor, id)}
+      onDelete={() => showActionModal(ACTIONS.deleteActor, id)}
     />,
   ]);
   const competitionCount = competitions.length;
@@ -41,8 +44,8 @@ function CompetitionsComponent() {
       <CustomModal open={showModal} handleClose={closeActionModal}>
         {showCreateContent && <CreateCompetition />}
         {showEditContent && <EditCompetition />}
-        {/* {showDeleteContent && <DeleteCompetition />}
-        {showViewContent && <ViewCompetition />} */}
+        {showDeleteContent && <DeleteCompetition />}
+        {showViewContent && <ViewCompetition />}
       </CustomModal>
     </PageTemplateLayout>
   );

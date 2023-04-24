@@ -4,7 +4,6 @@ const DEFAULT_VALUES = {
   description: "",
 };
 export default function useCreateAndEditCompetitionLogic(data) {
-  console.log(data);
   const onSubmit = (values) => console.log({ values });
 
   return {
