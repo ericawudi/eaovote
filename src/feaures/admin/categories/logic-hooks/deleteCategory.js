@@ -1,4 +1,4 @@
-export default function useDeleteCompetitionLogic(close) {
+export default function useDeleteCategoryLogic(close) {
   const handleDelete = () => {
     console.log("deleting...");
     return setTimeout(() => close(), 1000);

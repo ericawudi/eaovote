@@ -8,7 +8,6 @@ export default function DeleteCompetition() {
   const { selectedCompetition } = competitionsState.state;
   const { handleCancel, handleDelete } = deleteCompetitionState;
 
-  console.log({ competitionsState });
   return (
     <DeleteActorTemplate
       actor="Competition"

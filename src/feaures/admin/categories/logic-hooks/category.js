@@ -1,17 +1,34 @@
 import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
 
-const TITLE = "Categories";
+const TITLE = "Category";
 const columns = ["Category", "Competition", "Actions"];
-const categories = [
-  ["jamesjoe", "Joe James"],
-  ["jamesjoe", "Joe James"],
-  ["jamesjoe", "Joe James"],
-  ["jamesjoe", "Joe James"],
+const DUMMY_CATEGORIES = [
+  {
+    id: "ctg001",
+    competitionId: "admin001",
+    competition: "Eric Awudi",
+    name: "Joe James",
+    description: "This is a test",
+  },
+  {
+    id: "ctg002",
+    competitionId: "admin001",
+    competition: "Eric Awudi",
+    name: "Joe James",
+    description: "This is a test",
+  },
+  {
+    id: "ctg002",
+    competitionId: "admin001",
+    competition: "Eric Awudi",
+    name: "Joe James",
+    description: "This is a test",
+  },
 ];
 
-export default function useCategoryLogicHook() {
-  const [selectedAdminId, setSelectedAdminId] = useState("");
+export default function useCategoriesLogic() {
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const {
     ACTIONS,
     showModal,
@@ -22,11 +39,19 @@ export default function useCategoryLogicHook() {
     openModal,
     closeActionModal,
   } = useModalViews();
-  console.log(selectedAdminId);
-  const showActionModal = openModal(setSelectedAdminId);
+
+  const showActionModal = openModal(setSelectedCategoryId);
+  const selectedCategory = DUMMY_CATEGORIES.find(
+    ({ id }) => id === selectedCategoryId
+  );
 
   return {
-    state: { TITLE, columns, categories },
+    state: {
+      TITLE,
+      columns,
+      categories: DUMMY_CATEGORIES,
+      selectedCategory,
+    },
     modal: {
       ACTIONS,
       showModal,

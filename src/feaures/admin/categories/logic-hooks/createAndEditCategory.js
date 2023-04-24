@@ -1,16 +1,16 @@
 const DEFAULT_VALUES = {
+  competition_id: null,
   name: "",
-  adminId: "",
   description: "",
 };
-export default function useCreateAndEditCompetitionLogic(data) {
-  const { closeActionModal, competition } = data;
+export default function useCreateAndEditCategoryLogic(data) {
+  const { closeActionModal, category } = data;
   const onSubmit = (values) =>
     console.log({ values, fxn: JSON.stringify(closeActionModal) });
 
   return {
     state: {
-      defaultValues: competition ?? DEFAULT_VALUES,
+      defaultValues: category ?? DEFAULT_VALUES,
       isLoading: false,
     },
     handlers: { onSubmit },

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import useCompetitionsLogic from "../logic-hooks/competition";
 import useCreateAndEditCompetitionLogic from "../logic-hooks/createAndEditCompetition";
-import useDeleteVoterLogic from "../logic-hooks/deleteCompetition";
+import useDeleteCompetitionLogic from "../logic-hooks/deleteCompetition";
 
 const CompetitionsContext = createContext();
 export const useCompetitionsContext = () => useContext(CompetitionsContext);
@@ -9,11 +9,10 @@ export const useCompetitionsContext = () => useContext(CompetitionsContext);
 export default function CompetitionsContextProvider({ children }) {
   const competitionsState = useCompetitionsLogic();
   const { closeActionModal } = competitionsState.handlers;
-  const deleteCompetitionState = useDeleteVoterLogic(closeActionModal);
+  const deleteCompetitionState = useDeleteCompetitionLogic(closeActionModal);
   const createAndEditCompetitionState = useCreateAndEditCompetitionLogic({
     closeActionModal,
-    showCreateContent: competitionsState.modal.showCreateContent,
-    competition: competitionsState.state.selectedVoter,
+    competition: competitionsState.state.selectedCompetition,
   });
 
   const state = {
