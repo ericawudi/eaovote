@@ -3,15 +3,35 @@ import useModalViews from "../../hooks/use-modal-views";
 
 const TITLE = "Participants";
 const columns = ["Fullname", "Competition", "Category", "Actions"];
-const participants = [
-  ["Joe James", "Competition A", "Category AB"],
-  ["Joe James", "Competition A", "Category AB"],
-  ["Joe James", "Competition A", "Category AB"],
-  ["Joe James", "Competition A", "Category AB"],
+const DUMMY_participants = [
+  {
+    id: "ptp001",
+    fullname: "Joe James",
+    competitionId: "cmp001",
+    competition: "Competition A",
+    categoryId: "ct001",
+    category: "Category AB",
+  },
+  {
+    id: "ptp002",
+    fullname: "Joe James",
+    competitionId: "cmp001",
+    competition: "Competition A",
+    categoryId: "ct001",
+    category: "Category AB",
+  },
+  {
+    id: "ptp003",
+    fullname: "Joe James",
+    competitionId: "cmp001",
+    competition: "Competition A",
+    categoryId: "ct001",
+    category: "Category AB",
+  },
 ];
 
-export default function useParticipantLogicHook() {
-  const [selectedAdminId, setSelectedAdminId] = useState("");
+export default function useParticipantsLogic() {
+  const [selectedParticipantId, setSelectedParticipantId] = useState("");
   const {
     ACTIONS,
     showModal,
@@ -22,12 +42,19 @@ export default function useParticipantLogicHook() {
     openModal,
     closeActionModal,
   } = useModalViews();
-  console.log(selectedAdminId);
 
-  const showActionModal = openModal(setSelectedAdminId);
+  const showActionModal = openModal(setSelectedParticipantId);
+  const selectedParticipant = DUMMY_participants.find(
+    ({ id }) => id === selectedParticipantId
+  );
 
   return {
-    state: { TITLE, columns, participants },
+    state: {
+      TITLE,
+      columns,
+      participants: DUMMY_participants,
+      selectedParticipant,
+    },
     modal: {
       ACTIONS,
       showModal,

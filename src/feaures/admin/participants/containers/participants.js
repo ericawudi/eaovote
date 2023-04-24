@@ -3,27 +3,35 @@ import PageTemplateLayout from "../../components/pageLayoutTemplate";
 import DataTable from "../../components/muiDataTable";
 import ActionButtons from "../../components/actionButtons";
 import CreateParticipant from "./createParticipant";
-import useParticipantLogicHook from "../logic-hooks/participants";
+import EditParticipant from "./editParticipant";
+import DeleteParticipant from "./deleteParticipant";
+import ViewParticipant from "./viewParticipant";
+import ParticipantsContextProvider, {
+  useParticipantContext,
+} from "../context/participantProvider";
 
-export default function Participants() {
-  const { state, modal, handlers } = useParticipantLogicHook();
+function ParticipantsComponent() {
+  const { participantsState } = useParticipantContext();
+  const { state, modal, handlers } = participantsState;
   const { participants, columns, TITLE } = state;
   const { showActionModal, closeActionModal } = handlers;
   const {
     ACTIONS,
     showModal,
     showCreateContent,
-    // showEditContent,
-    // showDeleteContent,
-    // showViewContent,
+    showEditContent,
+    showDeleteContent,
+    showViewContent,
   } = modal;
 
-  const data = participants.map((row, idx) => [
-    ...row,
+  const data = participants.map(({ fullname, competition, category, id }) => [
+    fullname,
+    competition,
+    category,
     <ActionButtons
-      onEdit={() => showActionModal(ACTIONS.editActor, idx)}
-      onView={() => showActionModal(ACTIONS.viewActor, idx)}
-      onDelete={() => showActionModal(ACTIONS.deleteActor, idx)}
+      onEdit={() => showActionModal(ACTIONS.editActor, id)}
+      onView={() => showActionModal(ACTIONS.viewActor, id)}
+      onDelete={() => showActionModal(ACTIONS.deleteActor, id)}
     />,
   ]);
   const participantCount = participants.length;
@@ -36,10 +44,18 @@ export default function Participants() {
       <DataTable title={TITLE} columns={columns} data={data} />
       <CustomModal open={showModal} handleClose={closeActionModal}>
         {showCreateContent && <CreateParticipant />}
-        {/* {showEditContent && <EditParticipant />}
+        {showEditContent && <EditParticipant />}
         {showDeleteContent && <DeleteParticipant />}
-        {showViewContent && <ViewParticipant />} */}
+        {showViewContent && <ViewParticipant />}
       </CustomModal>
     </PageTemplateLayout>
+  );
+}
+
+export default function Participants() {
+  return (
+    <ParticipantsContextProvider>
+      <ParticipantsComponent />
+    </ParticipantsContextProvider>
   );
 }

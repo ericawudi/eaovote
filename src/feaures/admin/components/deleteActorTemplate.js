@@ -7,7 +7,7 @@ export default function DeleteActorTemplate(props) {
     <div>
       <h1 className={classes.template_title}>Delete {actor}</h1>
       <p className={classes.delete__warning}>
-        You are about to permanantly delete voter {name}
+        You are about to permanantly delete {name}
       </p>
       <p className={classes.delete__warning}>Are you sure?</p>
       <div className={classes.delete__button_container}>
