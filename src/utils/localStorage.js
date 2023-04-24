@@ -22,4 +22,10 @@ const loadStateFromLocalStorage = () => {
   }
 };
 
-export { saveStateToLocalStorage, loadStateFromLocalStorage };
+const clearStateInLocalStorage = () => localStorage.clear();
+
+export {
+  saveStateToLocalStorage,
+  loadStateFromLocalStorage,
+  clearStateInLocalStorage,
+};

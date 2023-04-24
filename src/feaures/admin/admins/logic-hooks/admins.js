@@ -1,8 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
-import { setAllAdmins } from "../../../../libs/redux/actions/admins";
-import { getAllAdminsAPIRequest } from "../../../../services/admins";
 
 const TITLE = "Admins";
 const columns = ["Admin", "Full Name", "Email", "Phone", "Actions"];
@@ -14,8 +11,6 @@ const admins = [
 ];
 
 export default function useAdminLogic() {
-  const dispatch = useDispatch();
-  const { authToken } = useSelector((state) => state.authSlice);
   const [selectedAdminId, setSelectedAdminId] = useState("");
   const {
     ACTIONS,
@@ -30,15 +25,6 @@ export default function useAdminLogic() {
   console.log(selectedAdminId);
   const showActionModal = openModal(setSelectedAdminId);
 
-  useEffect(() => {
-    const fetchAllAdmins = async () => {
-      const response = await getAllAdminsAPIRequest(authToken);
-      if (response.err) return console.log({ FETCH_FAILED: response.message });
-      console.log({ SUCCESS: response });
-      // return dispatch(setCompetitons(res.data.data));
-    };
-    fetchAllAdmins();
-  }, [authToken]);
   return {
     state: { TITLE, columns, admins },
     modal: {

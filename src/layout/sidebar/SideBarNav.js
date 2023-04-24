@@ -14,9 +14,7 @@ function SideBarNav() {
   const { broken, toggleSidebar } = useProSidebar();
   const { isLoading, isError, navItems, handleLogout } = useSidebarLogic();
 
-  function toggle() {
-    toggleSidebar();
-  }
+  const toggle = () => toggleSidebar();
 
   if (isLoading) {
     return (
