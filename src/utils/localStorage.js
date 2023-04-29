@@ -12,9 +12,7 @@ const saveStateToLocalStorage = (state) => {
 const loadStateFromLocalStorage = () => {
   try {
     const serializedState = localStorage.getItem(LOCAL_STORE_KEY);
-    if (serializedState == null) {
-      return undefined;
-    }
+    if (serializedState == null) return undefined;
     return JSON.parse(serializedState);
   } catch (err) {
     console.log(err);
