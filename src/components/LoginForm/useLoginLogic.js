@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
@@ -8,17 +7,25 @@ import {
   setAuthCookie,
   setLevelCookie,
 } from "../../utils/auth";
+import {
+  NOTIFICATION_ACTIONS,
+  NOTIFICATION_SEVERITY,
+} from "../Notification/notificationConstants";
+import { useAppContext } from "../../contest/AppContextProvider";
 
 export default function useLoginLogic() {
-  const [open, setOpen] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState("");
+  const { addNotification } = useAppContext();
   const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
   const onErrorCall = (error) => {
-    setNotificationMessage(error?.response?.data?.data || error.message);
-    setOpen(true);
+    const err = error?.response?.data?.data || error.message;
+    addNotification({
+      action: NOTIFICATION_ACTIONS.LOGIN_USER,
+      severity: NOTIFICATION_SEVERITY.error,
+      message: err,
+    });
   };
 
   const onSuccessFulCall = (data) => {
@@ -42,13 +49,6 @@ export default function useLoginLogic() {
     mutate({ url: `login/${values.level}`, data: loginData });
   };
 
-  const handleClose = (_event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
-
   const {
     register,
     handleSubmit,
@@ -59,10 +59,8 @@ export default function useLoginLogic() {
     state: {
       register,
       errors,
-      open,
-      notificationMessage,
     },
-    handlers: { handleSubmit, handleClose, onSubmit },
+    handlers: { handleSubmit, onSubmit },
     fetchResponse: {
       isLoading,
       isError,

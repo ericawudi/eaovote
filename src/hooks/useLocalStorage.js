@@ -4,15 +4,24 @@ import {
   loadStateFromLocalStorage,
 } from "../utils/localStorage";
 
-export const ACTIONS = {
+const SLICES = {
+  notifications: "notifications",
+};
+
+const ACTIONS = {
   SET_STATE: "SET_STATE",
 };
 
-const initialState = {};
+const initialState = {
+  notifications: [],
+};
 
 const reducer = (state, { type, data = null }) => {
-  if (type === ACTIONS.SET_STATE) return data;
-  if (type === "test") return { ...state, test: data };
+  if (type === ACTIONS.SET_STATE) return { ...state, data };
+
+  if (type === ACTIONS.RESET_NOTIFICATIONS) {
+    return { ...state, notifications: [] };
+  }
 
   return state;
 };
@@ -31,3 +40,5 @@ export default function useLocalStorage() {
 
   return { state, updateLocalStorage };
 }
+
+export { SLICES, ACTIONS };
