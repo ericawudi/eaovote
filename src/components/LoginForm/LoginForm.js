@@ -9,16 +9,14 @@ import {
   RadioGroup,
   FormControlLabel,
 } from "@mui/material";
-import Notification from "../Notification";
+
 import useLoginLogic from "./useLoginLogic";
 import { PasswordInput, TextInput } from "../Form/FormsInputs";
-// import { PasswordInput, TextInput } from "../Form/formsInputs";
 
 export default function LoginForm() {
-  const { state, handlers, fetchResponse } = useLoginLogic();
-  const { register, errors, open, notificationMessage } = state;
-  const { isLoading } = fetchResponse;
-  const { handleSubmit, onSubmit, handleClose } = handlers;
+  const { state, handlers } = useLoginLogic();
+  const { register, isLoading, errors } = state;
+  const { handleSubmit, onSubmit } = handlers;
 
   return (
     <Box
@@ -94,12 +92,6 @@ export default function LoginForm() {
           }}
         />
       )}
-      <Notification
-        severity="error"
-        message={notificationMessage}
-        openNotification={open}
-        handleClose={handleClose}
-      />
     </Box>
   );
 }

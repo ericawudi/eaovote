@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import useVotersLogic from "../logic-hooks/voters";
 import useCreateAndEditVoterLogic from "../logic-hooks/createAndEditVoter";
 import useDeleteVoterLogic from "../logic-hooks/deleteVoter";
+import useVotersLogic from "../logic-hooks/voters";
 
 const VoterContext = createContext();
 export const useVotersContext = () => useContext(VoterContext);

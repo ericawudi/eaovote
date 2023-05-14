@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
-import { usePostData } from "../../hooks/usePostData";
+import { useRQMutation } from "../../hooks/useRQMutation";
 import {
   getLevelCookie,
   setAuthCookie,
@@ -16,7 +16,6 @@ import { useAppContext } from "../../contest/AppContextProvider";
 export default function useLoginLogic() {
   const { addNotification } = useAppContext();
   const queryClient = useQueryClient();
-
   const navigate = useNavigate();
 
   const onErrorCall = (error) => {
@@ -39,14 +38,14 @@ export default function useLoginLogic() {
     navigate(`/${url}`);
   };
 
-  const { mutate, isLoading, isError, data, error } = usePostData(
-    onSuccessFulCall,
-    onErrorCall
-  );
-  const onSubmit = (values, _event) => {
-    const loginData = { username: values.username, password: values.password };
-    setLevelCookie(values.level);
-    mutate({ url: `login/${values.level}`, data: loginData });
+  const { mutate, isLoading } = useRQMutation({
+    onSuccess: onSuccessFulCall,
+    onError: onErrorCall,
+  });
+  const onSubmit = (values) => {
+    const { username, password, level } = values;
+    setLevelCookie(level);
+    mutate({ url: `login/${level}`, data: { username, password } });
   };
 
   const {
@@ -59,13 +58,8 @@ export default function useLoginLogic() {
     state: {
       register,
       errors,
+      isLoading,
     },
     handlers: { handleSubmit, onSubmit },
-    fetchResponse: {
-      isLoading,
-      isError,
-      data,
-      error,
-    },
   };
 }

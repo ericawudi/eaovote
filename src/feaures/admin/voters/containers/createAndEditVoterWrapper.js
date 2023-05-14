@@ -4,6 +4,7 @@ import {
   TextInput,
   PasswordInput,
   NumberInput,
+  EmailInput,
 } from "../../../../components/Form/FormsInputs";
 import { useVotersContext } from "../context/voterProvider";
 
@@ -42,7 +43,7 @@ export default function CreateAndEditVoterTemplate({ action }) {
           disabled={!allowUsernameEdit}
         />
         <PasswordInput register={register} error={errors.password} />
-        <TextInput
+        <EmailInput
           register={register}
           name="email"
           label="Email*"

@@ -32,6 +32,30 @@ export function TextInput(props) {
   );
 }
 
+export function EmailInput(props) {
+  const { register, error, name, label } = props;
+  return (
+    <TextField
+      {...register(name, {
+        required: {
+          value: true,
+          message: "Field is required",
+        },
+        pattern: {
+          value: /^\S+@\S+\.\S+$/,
+          message: "Please enter a valid email",
+        },
+      })}
+      error={!!error}
+      margin="normal"
+      fullWidth
+      label={label}
+      helperText={error?.message}
+      className={classes.form__input}
+    />
+  );
+}
+
 export function PasswordInput(props) {
   const { register, error } = props;
   return (
@@ -54,7 +78,7 @@ export function PasswordInput(props) {
       margin="normal"
       fullWidth
       label="Password*"
-      type="password"
+      // type="password"
       helperText={error?.message}
       autoComplete="current-password"
       className={classes.form__input}
