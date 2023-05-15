@@ -1,7 +1,6 @@
 import { useQueryClient } from "react-query";
 import useRQMutation, {
   updateQueryCacheWithNewActor,
-  removeActorFromQueryCache,
   API_METHODS,
 } from "../../../../hooks/useRQMutation";
 import { useAppContext } from "../../../../contest/AppContextProvider";
@@ -102,7 +101,7 @@ export default function useCreateAndEditVoterLogic(data) {
   };
 
   // === sending create and edit API request
-  const isLoading = isCreateVoterLoading || isEditVoterLoading;
+
   const onSubmit = (data) => {
     const payload = { url: ADMIN_URLS.voters, data };
     return showCreateContent

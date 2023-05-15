@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import classes from "../styles/components.module.css";
 
 export default function DeleteActorTemplate(props) {
-  const { actor, name, cancel, confirm } = props;
+  const { actor, name, cancel, confirm, isLoading } = props;
   return (
     <div>
       <h1 className={classes.template_title}>Delete {actor}</h1>
@@ -17,6 +17,7 @@ export default function DeleteActorTemplate(props) {
         <Button
           className={`${classes.delete__button} ${classes.delete__confirm_btn}`}
           onClick={confirm}
+          disabled={isLoading}
         >
           Confirm
         </Button>

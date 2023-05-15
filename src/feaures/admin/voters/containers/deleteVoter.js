@@ -4,14 +4,18 @@ import { useVotersContext } from "../context/voterProvider";
 export default function DeleteVoter() {
   const { votersState, deleteVoterState } = useVotersContext();
   const { selectedVoter } = votersState.state;
-  const { handleCancel, handleDelete } = deleteVoterState;
+  const { isLoading, handleCancel, handleDelete } = deleteVoterState;
+
+  const { id, fullname } = selectedVoter;
+  const onConfirm = () => handleDelete(id);
 
   return (
     <DeleteActorTemplate
       actor="Voter"
-      name={selectedVoter.fullname}
+      name={fullname}
       cancel={handleCancel}
-      confirm={handleDelete}
+      confirm={onConfirm}
+      isLoading={isLoading}
     />
   );
 }

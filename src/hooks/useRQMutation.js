@@ -4,7 +4,7 @@ import { APISecuredAxios } from "../libs/axios/securedAxios";
 const API_METHODS = { UPDATE: "UPDATE", DELETE: "DELETE" };
 
 const postData = ({ url, data }) => APISecuredAxios().post(url, data);
-const deleteData = ({ url, id }) => APISecuredAxios().delete(url, id);
+const deleteData = (url) => APISecuredAxios().delete(url);
 const updateData = ({ url, data }) => APISecuredAxios().put(url, data);
 
 export default function useRQMutation({ method, onSuccess, onError }) {
