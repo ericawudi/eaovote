@@ -7,13 +7,12 @@ import {
   EmailInput,
 } from "../../../../components/Form/FormsInputs";
 import { useVotersContext } from "../context/voterProvider";
+import { VOTER_ACTIONS } from "../logic-hooks/createAndEditVoter";
 
 export default function CreateAndEditVoterTemplate({ action }) {
   const { createAndEditVoterState } = useVotersContext();
-  const {
-    state: { allowUsernameEdit, isLoading, defaultValues },
-    handlers: { onSubmit },
-  } = createAndEditVoterState;
+  const { allowUsernameEdit, isLoading, defaultValues, onSubmit } =
+    createAndEditVoterState;
 
   const {
     register,
@@ -42,7 +41,9 @@ export default function CreateAndEditVoterTemplate({ action }) {
           error={errors.username}
           disabled={!allowUsernameEdit}
         />
-        <PasswordInput register={register} error={errors.password} />
+        {action === VOTER_ACTIONS.create && (
+          <PasswordInput register={register} error={errors.password} />
+        )}
         <EmailInput
           register={register}
           name="email"

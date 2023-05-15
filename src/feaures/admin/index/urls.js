@@ -1,5 +1,5 @@
 const ADMIN_URLS = {
-  voter: "voter",
+  voters: "voters",
 };
 
 export default ADMIN_URLS;
