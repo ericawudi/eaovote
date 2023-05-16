@@ -60,7 +60,8 @@ export default function useCreateAndEditVoterLogic(data) {
       onError: onCreateFail,
     });
 
-  const handleCreateVoter = (payload) => createVoter(payload);
+  const handleCreateVoter = (data) =>
+    createVoter({ url: ADMIN_URLS.voters, data });
 
   // === editing a voter ===
 
@@ -89,25 +90,21 @@ export default function useCreateAndEditVoterLogic(data) {
     onError: onEditFail,
   });
 
-  const handleEditVoter = (payload) => {
-    const { data } = payload;
-
+  const handleEditVoter = (data) => {
+    const { id } = voter;
+    const url = `${ADMIN_URLS.voters}/${id}`;
     const updateData = Object.keys(data).reduce((result, key) => {
       if (data[key] !== voter[key]) result[key] = data[key];
       return result;
     }, {});
 
-    return editVoter({ ...payload, data: updateData });
+    return editVoter({ url, data: updateData });
   };
 
   // === sending create and edit API request
 
-  const onSubmit = (data) => {
-    const payload = { url: ADMIN_URLS.voters, data };
-    return showCreateContent
-      ? handleCreateVoter(payload)
-      : handleEditVoter(payload);
-  };
+  const onSubmit = (data) =>
+    showCreateContent ? handleCreateVoter(data) : handleEditVoter(data);
 
   return {
     defaultValues,
