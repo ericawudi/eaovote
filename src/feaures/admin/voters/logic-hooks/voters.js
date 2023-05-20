@@ -5,19 +5,13 @@ import {
   NOTIFICATION_ACTIONS,
   NOTIFICATION_SEVERITY,
 } from "../../../../components/Notification/notificationConstants";
-import { useAppContext } from "../../../../contest/AppContextProvider";
+import { FETCH_ON_MOUNT, QUERY_KEYS } from "../../index/constants";
 
 const TITLE = "Voters";
 const columns = ["Voter", "Fullname", "email", "Contact", "Actions"];
 
-const FETCH_ON_MOUNT = true;
-export const QUERY_KEYS = {
-  VOTERS: ["voters", "admin"],
-};
-
-export default function useVotersLogic() {
+export default function useVotersLogic(addNotification) {
   const modalState = useModalViews();
-  const { addNotification } = useAppContext();
   const [selectedVoterId, setSelectedVoterId] = useState("");
 
   const showActionModal = modalState.openModal(setSelectedVoterId);

@@ -1,68 +1,47 @@
 import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
+import { useFetch, getActorList } from "../../../../hooks/useFetch";
+import {
+  NOTIFICATION_ACTIONS,
+  NOTIFICATION_SEVERITY,
+} from "../../../../components/Notification/notificationConstants";
+import { QUERY_KEYS, FETCH_ON_MOUNT } from "../../index/constants";
 
 const TITLE = "Participants";
 const columns = ["Fullname", "Competition", "Category", "Actions"];
-const DUMMY_participants = [
-  {
-    id: "ptp001",
-    fullname: "Joe James",
-    competitionId: "cmp001",
-    competition: "Competition A",
-    categoryId: "ct001",
-    category: "Category AB",
-  },
-  {
-    id: "ptp002",
-    fullname: "Joe James",
-    competitionId: "cmp001",
-    competition: "Competition A",
-    categoryId: "ct001",
-    category: "Category AB",
-  },
-  {
-    id: "ptp003",
-    fullname: "Joe James",
-    competitionId: "cmp001",
-    competition: "Competition A",
-    categoryId: "ct001",
-    category: "Category AB",
-  },
-];
 
-export default function useParticipantsLogic() {
+export default function useParticipantsLogic(addNotification) {
+  const modalState = useModalViews();
   const [selectedParticipantId, setSelectedParticipantId] = useState("");
-  const {
-    ACTIONS,
-    showModal,
-    showCreateContent,
-    showEditContent,
-    showDeleteContent,
-    showViewContent,
-    openModal,
-    closeActionModal,
-  } = useModalViews();
 
-  const showActionModal = openModal(setSelectedParticipantId);
-  const selectedParticipant = DUMMY_participants.find(
+  const showActionModal = modalState.openModal(setSelectedParticipantId);
+
+  const { error, ...rest } = useFetch(QUERY_KEYS.PARTICIPANTS, FETCH_ON_MOUNT);
+  const participants = getActorList(rest.data);
+  const selectedParticipant = participants.find(
     ({ id }) => id === selectedParticipantId
   );
+
+  if (error) {
+    const err = error.response?.data?.data ?? error.message;
+    addNotification({
+      action: NOTIFICATION_ACTIONS.PARTICIPANT.FETCH_ALL,
+      severity: NOTIFICATION_SEVERITY.error,
+      message: err,
+    });
+  }
 
   return {
     state: {
       TITLE,
       columns,
-      participants: DUMMY_participants,
+      participants,
       selectedParticipant,
     },
-    modal: {
-      ACTIONS,
-      showModal,
-      showCreateContent,
-      showEditContent,
-      showDeleteContent,
-      showViewContent,
+    modal: modalState,
+    handlers: {
+      showActionModal,
+      closeActionModal: modalState.closeActionModal,
     },
-    handlers: { showActionModal, closeActionModal },
   };
 }

@@ -3,13 +3,11 @@ import useRQMutation, {
   updateQueryCacheWithNewActor,
   API_METHODS,
 } from "../../../../hooks/useRQMutation";
-import { useAppContext } from "../../../../contest/AppContextProvider";
 import {
   NOTIFICATION_ACTIONS,
   NOTIFICATION_SEVERITY,
 } from "../../../../components/Notification/notificationConstants";
-import { QUERY_KEYS } from "./voters";
-import ADMIN_URLS from "../../index/urls";
+import { QUERY_KEYS, ADMIN_URLS } from "../../index/constants";
 
 const DEFAULT_VALUES = {
   fullname: "",
@@ -24,10 +22,9 @@ export const VOTER_ACTIONS = {
   edit: "Edit Voter",
 };
 
-export default function useCreateAndEditVoterLogic(data) {
+export default function useCreateAndEditVoterLogic(args) {
   const queryClient = useQueryClient();
-  const { addNotification } = useAppContext();
-  const { showCreateContent, closeActionModal, voter } = data;
+  const { addNotification, showCreateContent, closeActionModal, voter } = args;
   const defaultValues = voter ?? DEFAULT_VALUES;
 
   // === creating a new voter ===
@@ -92,7 +89,7 @@ export default function useCreateAndEditVoterLogic(data) {
 
   const handleEditVoter = (data) => {
     const { id } = voter;
-    const url = `${ADMIN_URLS.voters}/${id}`;
+    const url = `${ADMIN_URLS.VOTERS}/${id}`;
     const updateData = Object.keys(data).reduce((result, key) => {
       if (data[key] !== voter[key]) result[key] = data[key];
       return result;

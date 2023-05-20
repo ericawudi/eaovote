@@ -1,16 +1,14 @@
 import { useQueryClient } from "react-query";
 import useRQMutation, { API_METHODS } from "../../../../hooks/useRQMutation";
-import { useAppContext } from "../../../../contest/AppContextProvider";
 import {
   NOTIFICATION_ACTIONS,
   NOTIFICATION_SEVERITY,
 } from "../../../../components/Notification/notificationConstants";
-import { QUERY_KEYS } from "./voters";
-import ADMIN_URLS from "../../index/urls";
+import { ADMIN_URLS, QUERY_KEYS } from "../../index/constants";
 
-export default function useDeleteVoterLogic(close) {
+export default function useDeleteVoterLogic(params) {
+  const { closeActionModal, addNotification } = params;
   const queryClient = useQueryClient();
-  const { addNotification } = useAppContext();
 
   const onDeleteSuccess = () => {
     queryClient.invalidateQueries(QUERY_KEYS.VOTERS);
@@ -21,7 +19,7 @@ export default function useDeleteVoterLogic(close) {
       message: "Voter Deleted Successfully",
     });
 
-    return close();
+    return closeActionModal();
   };
 
   const onDeleteFail = (error) => {
@@ -40,8 +38,8 @@ export default function useDeleteVoterLogic(close) {
   });
 
   const handleDelete = (id) => {
-    const deleteUrl = `${ADMIN_URLS.voters}/${id}`;
+    const deleteUrl = `${ADMIN_URLS.VOTERS}/${id}`;
     return mutate(deleteUrl);
   };
-  return { isLoading, handleDelete, handleCancel: close };
+  return { isLoading, handleDelete, handleCancel: closeActionModal };
 }
