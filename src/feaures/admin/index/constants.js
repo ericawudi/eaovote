@@ -1,16 +1,13 @@
 const FETCH_ON_MOUNT = true;
 const QUERY_KEYS = {
-  VOTERS: ["voters", "all"],
+  VOTERS: ["voters", "admin"],
   PARTICIPANTS: ["participants"],
   CATEGORIES: [],
-  COMPETITIONS: [],
+  COMPETITIONS: ["competition", "admin"],
 };
-const ADMIN_URLS = Object.keys(QUERY_KEYS).reduce(
-  (urls, current) => ({
-    ...urls,
-    [current]: current.toLowerCase(),
-  }),
-  {}
-);
+const ADMIN_URLS = {
+  VOTERS: "voters",
+  COMPETITIONS: "competition",
+};
 
 export { ADMIN_URLS, FETCH_ON_MOUNT, QUERY_KEYS };

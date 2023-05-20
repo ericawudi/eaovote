@@ -11,7 +11,6 @@ import { QUERY_KEYS, ADMIN_URLS } from "../../index/constants";
 
 const DEFAULT_VALUES = {
   name: "",
-  adminId: "",
   description: "",
 };
 export default function useCreateAndEditCompetitionLogic(args) {
@@ -30,6 +29,8 @@ export default function useCreateAndEditCompetitionLogic(args) {
       severity: NOTIFICATION_SEVERITY.success,
       message: "Competition Created Successfully",
     });
+
+    return closeActionModal();
   };
 
   const onCreateFail = (error) => {

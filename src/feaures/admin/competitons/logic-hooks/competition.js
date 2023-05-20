@@ -17,6 +17,7 @@ export default function useCompetitionsLogic(addNotification) {
   const showActionModal = modalState.openModal(setSelectedCompetitionId);
 
   const { error, ...rest } = useFetch(QUERY_KEYS.COMPETITIONS, FETCH_ON_MOUNT);
+
   const competitions = getActorList(rest.data);
   const selectedCompetition = competitions.find(
     ({ id }) => id === selectedCompetitionId

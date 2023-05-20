@@ -13,7 +13,7 @@ export default function DeleteCompetition() {
       actor="Competition"
       name={selectedCompetition.name}
       cancel={handleCancel}
-      confirm={handleDelete}
+      confirm={() => handleDelete(selectedCompetition.id)}
     />
   );
 }

@@ -14,7 +14,7 @@ export default function useDeleteCompetitionLogic(params) {
     queryClient.invalidateQueries(QUERY_KEYS.COMPETITIONS);
 
     addNotification({
-      action: NOTIFICATION_ACTIONS.COMPETITIONS.DELETE,
+      action: NOTIFICATION_ACTIONS.COMPETITION.DELETE,
       severity: NOTIFICATION_SEVERITY.success,
       message: "Competition Deleted Successfully",
     });
@@ -25,7 +25,7 @@ export default function useDeleteCompetitionLogic(params) {
   const onDeleteFail = (error) => {
     const err = error?.response?.data?.data || error.message;
     addNotification({
-      action: NOTIFICATION_ACTIONS.COMPETITIONS.DELETE,
+      action: NOTIFICATION_ACTIONS.COMPETITION.DELETE,
       severity: NOTIFICATION_SEVERITY.error,
       message: err,
     });

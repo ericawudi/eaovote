@@ -9,10 +9,7 @@ import { useCompetitionsContext } from "../context/competionProvider";
 
 export default function CreateAndEditCompetitionTemplate({ action }) {
   const { createAndEditCompetitionState } = useCompetitionsContext();
-  const {
-    state: { isLoading, defaultValues },
-    handlers: { onSubmit },
-  } = createAndEditCompetitionState;
+  const { isLoading, defaultValues, onSubmit } = createAndEditCompetitionState;
 
   const {
     register,
@@ -28,16 +25,6 @@ export default function CreateAndEditCompetitionTemplate({ action }) {
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
       >
-        <SelectInput
-          register={register}
-          name="adminId"
-          label="Admin*"
-          error={errors.adminId}
-          options={[
-            { label: "Eric Awudi", value: "Eric Awudi" },
-            { label: "Passport", value: "Passport" },
-          ]}
-        />
         <TextInput
           register={register}
           name="name"
