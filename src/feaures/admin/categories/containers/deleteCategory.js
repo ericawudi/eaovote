@@ -11,7 +11,7 @@ export default function DeleteCategory() {
       actor="Competition"
       name={selectedCategory.name}
       cancel={handleCancel}
-      confirm={handleDelete}
+      confirm={() => handleDelete(selectedCategory.id)}
     />
   );
 }

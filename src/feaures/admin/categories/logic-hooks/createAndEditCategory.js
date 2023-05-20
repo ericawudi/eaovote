@@ -1,4 +1,5 @@
 import { useQueryClient } from "react-query";
+import { useFetch, getActorList } from "../../../../hooks/useFetch";
 import useRQMutation, {
   updateQueryCacheWithNewActor,
   API_METHODS,
@@ -7,7 +8,7 @@ import {
   NOTIFICATION_ACTIONS,
   NOTIFICATION_SEVERITY,
 } from "../../../../components/Notification/notificationConstants";
-import { QUERY_KEYS, ADMIN_URLS } from "../../index/constants";
+import { QUERY_KEYS, FETCH_ON_MOUNT, ADMIN_URLS } from "../../index/constants";
 
 const DEFAULT_VALUES = {
   competition_id: null,
@@ -17,6 +18,24 @@ const DEFAULT_VALUES = {
 export default function useCreateAndEditCategoryLogic(args) {
   const queryClient = useQueryClient();
   const { addNotification, closeActionModal, category } = args;
+
+  //  fetch all competitions
+  const { error, ...rest } = useFetch(QUERY_KEYS.COMPETITIONS, FETCH_ON_MOUNT);
+
+  const competitions = getActorList(rest.data);
+  const competitionOptions = competitions.map(({ id, name }) => ({
+    label: name,
+    value: id,
+  }));
+
+  if (error) {
+    const err = error.response?.data?.data ?? error.message;
+    addNotification({
+      action: NOTIFICATION_ACTIONS.COMPETITIONS.FETCH_ALL,
+      severity: NOTIFICATION_SEVERITY.error,
+      message: err,
+    });
+  }
 
   // === creating a new participant ===
   const onCreateSuccess = (res) => {
@@ -30,6 +49,8 @@ export default function useCreateAndEditCategoryLogic(args) {
       severity: NOTIFICATION_SEVERITY.success,
       message: "Category Created Successfully",
     });
+
+    return closeActionModal();
   };
 
   const onCreateFail = (error) => {
@@ -39,7 +60,6 @@ export default function useCreateAndEditCategoryLogic(args) {
       severity: NOTIFICATION_SEVERITY.error,
       message: err,
     });
-    return closeActionModal();
   };
 
   const { mutate: createCategory, isLoading: isCreateCategoryLoading } =
@@ -97,7 +117,9 @@ export default function useCreateAndEditCategoryLogic(args) {
 
   return {
     defaultValues: category ?? DEFAULT_VALUES,
-    isLoading: isCreateCategoryLoading || isEditCategoryLoading,
+    competitionOptions,
+    isLoading:
+      isCreateCategoryLoading || isEditCategoryLoading || rest.isLoading,
     onSubmit,
   };
 }

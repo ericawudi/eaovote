@@ -18,7 +18,7 @@ export default function CategoriesContextProvider({ children }) {
   const createAndEditCategoryState = useCreateAndEditCategoryLogic({
     addNotification,
     closeActionModal,
-    Categorie: categoriesState.state.selectedCategory,
+    category: categoriesState.state.selectedCategory,
   });
 
   const state = {
