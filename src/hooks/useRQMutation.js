@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { APISecuredAxios } from "../libs/axios/securedAxios";
 
 const API_METHODS = { UPDATE: "UPDATE", DELETE: "DELETE" };

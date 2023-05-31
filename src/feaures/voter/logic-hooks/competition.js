@@ -1,4 +1,4 @@
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { usePostData } from "../../../hooks/usePostData";
 import { useVoterContext } from "../context";
 import { useState } from "react";

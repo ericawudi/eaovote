@@ -1,4 +1,4 @@
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import useRQMutation, { API_METHODS } from "../../../../hooks/useRQMutation";
 import {
   NOTIFICATION_ACTIONS,

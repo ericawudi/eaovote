@@ -1,6 +1,10 @@
 import { useState } from "react";
 import useModalViews from "../../hooks/use-modal-views";
-import { useFetch, getActorList } from "../../../../hooks/useFetch";
+import {
+  useFetch,
+  getActorList,
+  useFetchParallelData,
+} from "../../../../hooks/useFetch";
 import {
   NOTIFICATION_ACTIONS,
   NOTIFICATION_SEVERITY,
@@ -16,27 +20,34 @@ export default function useParticipantsLogic(addNotification) {
 
   const showActionModal = modalState.openModal(setSelectedParticipantId);
 
-  const { error, ...rest } = useFetch(QUERY_KEYS.PARTICIPANTS, FETCH_ON_MOUNT);
-  const participants = getActorList(rest.data);
-  const selectedParticipant = participants.find(
-    ({ id }) => id === selectedParticipantId
-  );
+  // const { error, ...rest } = useFetch(QUERY_KEYS.PARTICIPANTS, FETCH_ON_MOUNT);
+  // const participants = getActorList(rest.data);
+  // const selectedParticipant = participants.find(
+  //   ({ id }) => id === selectedParticipantId
+  // );
 
-  if (error) {
-    const err = error.response?.data?.data ?? error.message;
-    addNotification({
-      action: NOTIFICATION_ACTIONS.PARTICIPANT.FETCH_ALL,
-      severity: NOTIFICATION_SEVERITY.error,
-      message: err,
-    });
-  }
+  // if (error) {
+  //   const err = error.response?.data?.data ?? error.message;
+  //   addNotification({
+  //     action: NOTIFICATION_ACTIONS.PARTICIPANT.FETCH_ALL,
+  //     severity: NOTIFICATION_SEVERITY.error,
+  //     message: err,
+  //   });
+  // }
+
+  const res = useFetchParallelData(QUERY_KEYS.PARTICIPANTS, [
+    { id: 1 },
+    { id: 2 },
+  ]);
+
+  console.log({ PARALLEL_RQ: res });
 
   return {
     state: {
       TITLE,
       columns,
-      participants,
-      selectedParticipant,
+      participants: [],
+      selectedParticipant: null,
     },
     modal: modalState,
     handlers: {

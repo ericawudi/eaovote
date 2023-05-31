@@ -1,5 +1,11 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueries } from "@tanstack/react-query";
 import { APISecuredAxios } from "../libs/axios/securedAxios";
+
+const DEFAULT_QUERY_OPTIONS = {
+  refetchOnWindowFocus: false,
+  cacheTime: 30000,
+  staleTime: 30000,
+};
 
 const fetchData = ({ queryKey }) => {
   if (Array.isArray(queryKey) && queryKey.length > 1) {
@@ -9,13 +15,26 @@ const fetchData = ({ queryKey }) => {
   return APISecuredAxios().get(queryKey[0]);
 };
 
-export const useFetch = (key, enabled = false) => {
-  return useQuery(key, fetchData, {
-    refetchOnWindowFocus: false,
+const useFetch = (queryKey, enabled = false) => {
+  return useQuery({
+    queryKey,
     enabled,
-    cacheTime: 30000,
-    staleTime: 30000,
+    queryFn: fetchData,
+    ...DEFAULT_QUERY_OPTIONS,
   });
 };
 
-export const getActorList = (data) => data?.data?.data ?? [];
+function useFetchParallelData(parentKey, arr) {
+  const queries = arr.map(({ id }) => {
+    const queryKey = [parentKey, id];
+    return {
+      queryKey,
+      queryFn: fetchData,
+    };
+  });
+  return useQueries({ queries });
+}
+
+const getActorList = (data) => data?.data?.data ?? [];
+
+export { useFetchParallelData, getActorList, useFetch };
